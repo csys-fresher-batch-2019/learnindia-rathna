@@ -1,0 +1,10 @@
+language: java
+addons:
+  sonarcloud:
+    organization: "csys-fresher-batch-2019"
+    token:
+      secure: "ca89a68603de436db226b628763f55802199f3dd"
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=csys-fresher-batch-2019_learnindia-rathna
