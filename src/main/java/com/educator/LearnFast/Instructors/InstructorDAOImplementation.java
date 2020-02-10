@@ -16,52 +16,48 @@ import com.educator.LearnFast.TestUser.TestDisplayCourse;
 
 public class InstructorDAOImplementation implements InstructorDAO{
 
-	public void saveInstructor(InstructorInfo in) throws Exception {
+	public void saveInstructor(InstructorInfo in) {
 		String sql = "insert into instructor_info(instructor_id,instructor_name,instructor_email,instructor_password,area_of_interest)"
 				+ " values (instructor_id_seq.nextval,?,?,?,?)";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement ps = con.prepareStatement(sql);
+		int row = 0;
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);){
 		ps.setString(1, in.instructorName);
 		ps.setString(2, in.instructorEmail);
 		ps.setString(3, in.instructorPassword);
 		ps.setString(4, in.areaOfInterest);
 		//System.out.println(sql);
-		int row = ps.executeUpdate();
+		row = ps.executeUpdate();
 		//System.out.println("No.of.rows inserted:"+row);
 		System.out.println("Instructor Account Created");
+		}catch(Exception e) {
+			System.out.println("Cannot add instructor");
+		}
 	}
 
-	public void removeInstructor(int instructorId) throws Exception {
+	public void removeInstructor(int instructorId) {
 		String sql ="delete instructor_info where instructor_id = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement ps = con.prepareStatement(sql);
+		int row = 0;
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);){
 		ps.setInt(1, instructorId);
 		//System.out.println(sql);
-		int row = ps.executeUpdate();
+		row = ps.executeUpdate();
 		//System.out.println("no.of.row.delete:"+row);
 		System.out.println("Account Deleted");
-		
-	}
-
-	public void updateRecentWorks(String update,int instructorId) throws Exception {
-		String sql = "update instructor_info set recent_works = ? where instructor_id =?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, update);
-		ps.setInt(2, instructorId);
-		System.out.println(sql);
-		int row = ps.executeUpdate();
-		System.out.println("no.of.row.update:"+row);
-		
+		}catch(Exception e)
+		{
+			System.out.println("Cannot remove Instructor");
+		}
 	}
 	
-	public ArrayList<EnrollmentDetails> getEnrollmentDetails(int id) throws Exception{
+	public ArrayList<EnrollmentDetails> getEnrollmentDetails(int id){
 		String sql = "select course_id,course_name,duration_of_course from course_info where instructor_id = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, id);
-		ResultSet rs = ps.executeQuery();
 		ArrayList<EnrollmentDetails> out = new ArrayList<EnrollmentDetails>();
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);){
+		ps.setInt(1, id);
+		try(ResultSet rs = ps.executeQuery();){
 		while(rs.next()) {
 	
 			String sql1 ="select count(enrollment_id) from enrollment_info where course_id = ?";
@@ -78,15 +74,18 @@ public class InstructorDAOImplementation implements InstructorDAO{
 				cla.noOfEnrollments = 0;
 			out.add(cla);
 		}
+		}}catch(Exception e) {
+			System.out.println();
+		}
 		return out;
 	}
 	
 	public void instructorLogin(String email,String pass) throws Exception {
 		String sql = "select instructor_password from instructor_info where instructor_email = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement ps = con.prepareStatement(sql);
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);){
 		ps.setString(1, email);
-		ResultSet rs = ps.executeQuery();
+		try(ResultSet rs = ps.executeQuery();){
 		Scanner sc = new Scanner(System.in);
 		if(rs.next()) {
 			String password = rs.getString(1);
@@ -130,5 +129,9 @@ public class InstructorDAOImplementation implements InstructorDAO{
 		}
 		else
 			System.out.println("Invalid username or password please try again");
+	}
+		}catch(Exception e) {
+			System.out.println("Problem with Instructor Login");
+		}
 	}
 }
