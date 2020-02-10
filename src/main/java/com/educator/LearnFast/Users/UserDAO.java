@@ -12,7 +12,7 @@ public interface UserDAO {
 	
 	ArrayList getCourseHistory(int userId,int status) throws Exception;
 	
-	boolean UserLogin(String email,String pass) throws Exception;
+	int UserLogin(String email,String pass) throws Exception;
 	
 	
 }

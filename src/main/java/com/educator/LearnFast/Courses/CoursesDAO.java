@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public interface CoursesDAO {
 	int getNoOfEnrollment(int courseId) throws Exception ;
 	
-	void saveCourse(CourseInfo course) throws Exception;
+	boolean saveCourse(CourseInfo course) throws Exception;
 	
-	void removeCourse(int courseId) throws Exception;
+	int removeCourse(int courseId) throws Exception;
 	
 	ArrayList<CourseInfo> displayCourses(CourseInfo course) throws Exception;
 	

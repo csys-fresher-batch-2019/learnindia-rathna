@@ -5,7 +5,7 @@ public class CourseInfo {
 	public String toString() {
 		return "CourseInfo [courseId=" + courseId + ", courseName=" + courseName + ", durationOfCourse="
 				+ durationOfCourse + ", instructorName=" + instructorName + ", courseCategory=" + courseCategory
-				+ ", price=" + price + ", rating=" + rating + ", instructorId=" + instructorId + "]";
+				+ ", price=" + price + ", rating=" + rating + "]";
 	}
 	public int courseId;
 	public String courseName;
@@ -15,5 +15,6 @@ public class CourseInfo {
 	public int price;
 	public int rating;
 	public int instructorId;
+	public int noOfEnrollments;
 	
 }

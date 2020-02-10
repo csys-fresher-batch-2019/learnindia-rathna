@@ -24,8 +24,8 @@ public class TestDisplayCourse {
 		ArrayList<CourseInfo> result = new ArrayList<CourseInfo>();
 		result = method.displayCourses(in);
 		//ResultSet rso = method.displayCourses(in);
-		for(CourseInfo pass : result) {
-			/*System.out.print("Course_Name:");
+		/*for(CourseInfo pass : result) {
+			System.out.print("Course_Name:");
 			System.out.print(pass.courseName);
 			System.out.print(", ");
 			System.out.print("Duration_of_Course:");
@@ -41,10 +41,10 @@ public class TestDisplayCourse {
 			System.out.print(pass.courseCategory);
 			System.out.println(", ");
 			System.out.print("Course_Id:");
-			System.out.println(pass.courseId);*/
+			System.out.println(pass.courseId);
 			System.out.println(pass);
 		}
-		/*while(rso.next()) {
+		while(rso.next()) {
 			System.out.print("Course_name");
 			System.out.print(rso.getString("course_name"));
 			System.out.print(", ");
@@ -60,6 +60,10 @@ public class TestDisplayCourse {
 			System.out.print("Price");
 			System.out.println(rso.getInt("price"));
 		}*/
+		if(result!=null)
+		for(CourseInfo lo : result) {
+			System.out.println(lo);
+		}
 	}
 
 }

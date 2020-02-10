@@ -10,7 +10,9 @@ public class TestRemoveCourse {
 		System.out.println("Enter Course Id:");
 		int id = sc.nextInt();
 		CoursesDAOImplementation courser = new CoursesDAOImplementation();
-		courser.removeCourse(id);
+		int returned = courser.removeCourse(id);
+		if(returned == 1)
+			System.out.println("Course Successfully Removed");
 		
 	}
 

@@ -12,6 +12,7 @@ import com.educator.LearnFast.Courses.CoursesDAOImplementation;
 
 public class ImportCourses {
 	public static void main() throws Exception {
+		int count = 0;
 		Path path = Paths.get("D:\\courses.txt");
 		List<String> l1 = Files.readAllLines(path);
 		for(String line : l1) {
@@ -30,11 +31,10 @@ public class ImportCourses {
 			courses.price = price;
 			courses.instructorId = instructorId;
 			CoursesDAOImplementation method = new CoursesDAOImplementation();
-			method.saveCourse(courses);
+			boolean returned = method.saveCourse(courses);
+			if(returned == true)
+				count++;
 		}
-		System.out.println("Courses Imported");
-		
-		
+		System.out.println(+count+ "Courses Imported");
 	}
-
 }
