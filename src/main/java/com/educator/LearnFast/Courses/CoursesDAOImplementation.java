@@ -55,8 +55,10 @@ public class CoursesDAOImplementation implements CoursesDAO {
 				} catch (SQLException e) {
 					System.out.println("There is no such course");
 				}
-				con.close();
-				stmt.close();
+				finally {
+					con.close();
+					stmt.close();
+				}
 			}catch(Exception e) {
 				System.out.println("Could not Establish Connection with DataBase");
 			}
