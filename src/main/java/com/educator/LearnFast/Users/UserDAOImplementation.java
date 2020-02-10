@@ -24,88 +24,52 @@ public class UserDAOImplementation implements UserDAO{
 	public int addUser(UserInfo user) {
 		String sqlinsert = "insert into user_info(user_id,username,email_id,user_password) "
 				+ "values(user_id_seq.nextval,'"+user.userName+"','"+user.emailId+"','"+user.userPassword+"')";
-		Connection con = null;
-		Statement stmt = null;
-		try {
-			con = TestConnection.getConnection();
-			stmt = con.createStatement();
-			try {
+		try (Connection con = TestConnection.getConnection();
+			Statement stmt = con.createStatement();){
 				int row = stmt.executeUpdate(sqlinsert);
 				System.out.println("Account Created");
-			} catch (SQLException e) {
+			} catch ( Exception e) {
 				// TODO Auto-generated catch block
 				System.out.println("Cannot inser user");
 			}
-			con.close();
-			stmt.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return 1;
 	}
 	
 	public void deleteUser(int userId) {
 		String sql1 = "delete from enrollment_info where user_id = "+userId+"";
-		Connection con = null;
-		Statement stmt = null;
 		int row1 = 0;
-		try {
-			con = TestConnection.getConnection();
-			stmt = con.createStatement();
-			try {
-				stmt.executeUpdate(sql1);
-			} catch (SQLException e) {
+		try(Connection con = TestConnection.getConnection();
+			Statement stmt = con.createStatement();){
+			stmt.executeUpdate(sql1);
+			} catch ( Exception e) {
 				System.out.println("Cannot delete user Enrollment Details");
 			}
-			stmt.close();
-			con.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		String sqldelete = "delete from user_info where user_id = "+userId+"";
 		//System.out.println(sqldelete);
-		Statement stmt1=null;
-		Connection con1 = null;
 		int row = 0;
-		try {
-			con1 = TestConnection.getConnection();
-			stmt1 = con1.createStatement();
-			try {
+		try (Connection con1 = TestConnection.getConnection();
+			Statement stmt1 = con1.createStatement();){
 				stmt1.executeUpdate(sqldelete);
-			} catch (SQLException e) {
+			} catch ( Exception e) {
 				// TODO Auto-generated catch block
 				System.out.println("Cannot Delete User Details");
 			}
-			con1.close();
-			stmt1.close();
-		} catch ( Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//System.out.println(row);
-		//System.out.println(sqldelete);
 		System.out.println("Account Deleted");
 	}
 	
 	public int getNoOfCourses(int userId) {
 		String sqlNoOfCourses = "select no_of_courses_enrolled from user_info where user_id = "+userId+"";
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
 		int val = 0;
-		try {
-			con = TestConnection.getConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sqlNoOfCourses);
+		try (Connection con = TestConnection.getConnection();
+			Statement stmt = con.createStatement();){
+			try(ResultSet rs = stmt.executeQuery(sqlNoOfCourses);){
 			if(rs.next());
 			val = rs.getInt(1);
 			con.close();
 			stmt.close();
-		} catch (Exception e) {
+		}} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Cannot fetch no.of.enrollments");
 		}
 		return val;
 	}
@@ -127,13 +91,9 @@ public class UserDAOImplementation implements UserDAO{
 			break;		
 		}
 		ArrayList<CourseHistory> chrs = new ArrayList<CourseHistory>();
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		try {
-			con = TestConnection.getConnection();
-			stmt =  con.createStatement();
-			rs = stmt.executeQuery(query);
+		try (Connection con = TestConnection.getConnection();
+			Statement stmt =  con.createStatement();){
+			try(ResultSet rs = stmt.executeQuery(query);){
 			while(rs.next()) {
 				CourseHistory ch = new CourseHistory();
 				ch.courseName = rs.getString("course_name");
@@ -143,11 +103,9 @@ public class UserDAOImplementation implements UserDAO{
 				ch.ending_date = rs.getDate("ending_date");
 				chrs.add(ch);
 			}
-			con.close();
-			stmt.close();
-		} catch (Exception e) {
+		} }catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Cannot Fetch Course History");
 		}
 		return chrs;
 	}
@@ -155,15 +113,11 @@ public class UserDAOImplementation implements UserDAO{
 	public int UserLogin(String email, String pass) {
 		Scanner  sc = new Scanner(System.in);
 		String sql ="select user_password,user_id from user_info where email_id= '"+email+"'";
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		String passData = null;
 		int id = 0;
-		try {
-			con = TestConnection.getConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
+		String passData;
+		try (Connection con = TestConnection.getConnection();
+			Statement stmt = con.createStatement();){
+			try(ResultSet rs = stmt.executeQuery(sql);){
 			if(rs.next())
 			{
 			passData = rs.getString("user_password");
@@ -237,9 +191,9 @@ public class UserDAOImplementation implements UserDAO{
 				System.out.println("Invalid UserName or Password");
 			con.close();
 			stmt.close();
-		} catch (Exception e) {
+		} }catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("invalid username or password");
 		}
 
 		return 0;

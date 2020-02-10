@@ -17,24 +17,14 @@ public class CoursesDAOImplementation implements CoursesDAO {
 		String sqlsave = null;
 		 sqlsave = "insert into course_info(course_id,course_name,duration_of_course,instructor_name,instructor_id,course_category,price) "
 				+ "values(course_id_seq.nextval,'"+course.courseName+"',"+course.durationOfCourse+",'"+course.instructorName+"',"+course.instructorId+",'"+course.courseCategory+"',"+course.price+")";
-		Connection con = null;
-		 Statement stmt = null;
 		 int row = 0;
-		 try{
-					con = TestConnection.getConnection();
-					stmt = con.createStatement();
-					 try {
-							row = stmt.executeUpdate(sqlsave);
+		 try(Connection con = TestConnection.getConnection();
+					Statement stmt = con.createStatement();){
+						 row = stmt.executeUpdate(sqlsave);
 					 }
-					 catch(SQLException ex) {
+					 catch( Exception ex) {
 						 System.out.println("Error Importing the Course:course  may be already exists or some important course details not available");
 					 }
-					 con.close();
-					 stmt.close();
-				}
-				catch(Exception ex) {
-					System.out.println("Could not Establish Connection with DataBase");
-				}
 		 if(row == 1)
 			 return true;
 		 else 
@@ -44,49 +34,28 @@ public class CoursesDAOImplementation implements CoursesDAO {
 		
 		public int removeCourse(int courseId) {
 			String sqlremove = "delete course_info where course_id = '"+courseId+"'";
-			Connection con = null;
-			Statement stmt = null;
 			int row = 0;
-			try {
-				con = TestConnection.getConnection();
-				stmt = con.createStatement();
-				try {
+			try(Connection con = TestConnection.getConnection();
+				Statement stmt = con.createStatement();){
 					row = stmt.executeUpdate(sqlremove);
-				} catch (SQLException e) {
+					}catch ( Exception e) {
 					System.out.println("There is no such course");
 				}
-				finally {
-					con.close();
-					stmt.close();
-				}
-			}catch(Exception e) {
-				System.out.println("Could not Establish Connection with DataBase");
-			}
 			return row;
 		}
 		
 		public int getNoOfEnrollment(int courseId) {
 			String sqlenrollment = "select count(enrollment_id) from enrollment_info where status=1 and course_id="+courseId+"";
-			Connection con = null;
-			Statement stmt = null;
 			int row = 0;
-			ResultSet rs = null;
-			try {
-				con = TestConnection.getConnection();
-				stmt = con.createStatement();
-				try {
-					rs = stmt.executeQuery(sqlenrollment);
+			try (Connection con = TestConnection.getConnection();
+				Statement stmt = con.createStatement();){
+				try(ResultSet rs = stmt.executeQuery(sqlenrollment);){
 					if(rs.next());
 					 row = rs.getInt(1);
-				} catch (SQLException e) {
+				}} catch (Exception e) {
 					// TODO Auto-generated catch block
 					System.out.println("There is no such course");
 				}
-				con.close();
-				stmt.close();
-			}catch(Exception e) {
-				System.out.println("Could not Establish Connection with DataBase");
-			}
 			return row;
 		}
 		
@@ -109,10 +78,6 @@ public class CoursesDAOImplementation implements CoursesDAO {
 				key =6;
 			else if(course.instructorName.length()!=0)
 				key = 9;
-			Connection con = null;
-			 Statement stmt = null;
-			ResultSet rs = null;
-			System.out.println(key);
 			switch(key) {
 			case 0:
 				sql = "select *from course_info";
@@ -143,11 +108,9 @@ public class CoursesDAOImplementation implements CoursesDAO {
 				break;
 			}
 			ArrayList<CourseInfo> out = new ArrayList<CourseInfo>();
-			 try{
-					con = TestConnection.getConnection();
-					stmt = con.createStatement();
-					try {
-						rs=stmt.executeQuery(sql);
+			 try(Connection con = TestConnection.getConnection();
+					Statement stmt = con.createStatement();){
+					try (ResultSet rs=stmt.executeQuery(sql);){
 						while(rs.next()) {
 							CourseInfo obj = new CourseInfo();
 							obj.courseId = rs.getInt("course_id");
@@ -158,55 +121,35 @@ public class CoursesDAOImplementation implements CoursesDAO {
 							obj.price = rs.getInt("price");
 							out.add(obj);
 						}
-					} catch (SQLException e) {
+					}} catch ( Exception e) {
 						// TODO Auto-generated catch block
 						System.out.println("There is no such course");
 					}
-					con.close();
-					stmt.close();
-				}
-				catch(Exception ex) {
-					System.out.println("Could not Establish Connection with DataBase");
-				}
 			return out;
-		}
+			}
 		
 		public void addCourseRating(int rating,int courseId,int userId) {
-			Connection con = null;
-			PreparedStatement ps = null;
 			int row=0;
 			String sql = "update enrollment_info set rating = ? where course_id = ? and user_id = ? and rating is null";
-			 try {
-				con = TestConnection.getConnection();
-				 ps = con.prepareStatement(sql);
+			 try (Connection con = TestConnection.getConnection();
+				PreparedStatement ps = con.prepareStatement(sql);){
 					ps.setInt(1, rating);
 					ps.setInt(2, courseId);
 					ps.setInt(3, userId);
-					try {
-						row = ps.executeUpdate();
-					} catch (SQLException e) {
+					row = ps.executeUpdate();
+					} catch ( Exception e) {
 						// TODO Auto-generated catch block
 						System.out.println("Invalid Rating");
 					}
-					con.close();
-				ps.close();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("Could not establish connection with DB");
-			}
 			if(row == 1) {
-				Connection con1 = null;
 				System.out.println("Thanks for Your Rating");
 				String sql1 = "update course_info set rating = (select avg(rating) from enrollment_info where course_id = "+courseId+") where course_id = "+courseId+"";
-				try {
-					con1 = TestConnection.getConnection();
-					Statement stmt = con1.createStatement();
+				try(Connection con1 = TestConnection.getConnection();
+					Statement stmt = con1.createStatement();){
 					int row1 = stmt.executeUpdate(sql1);
-					stmt.close();
-					con1.close();
 				} catch ( Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("Average Rating cannot be added");
 				}
 			}
 			else
@@ -214,6 +157,5 @@ public class CoursesDAOImplementation implements CoursesDAO {
 				System.out.print("You Cannot Add Rating:");
 				System.out.println("you may already rated this course or the course id you have enterd is not in your course list");
 			}
-		}
-		
+		}	
 }
