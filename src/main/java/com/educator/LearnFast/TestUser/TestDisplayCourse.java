@@ -13,13 +13,13 @@ public class TestDisplayCourse {
 		CourseInfo in = new CourseInfo();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter course name:");
-		in.courseName = sc.nextLine();
+		in.setCourseName(sc.nextLine());
 		System.out.println("Enter instructor name:");
-		in.instructorName = sc.nextLine();
+		in.setInstructorName(sc.nextLine());
 		System.out.println("Enter course category:");
-		in.courseCategory = sc.nextLine();
+		in.setCourseCategory(sc.nextLine());
 		System.out.println("Enter price:");
-		in.price = sc.nextInt();
+		in.setPrice(sc.nextInt());
 		CoursesDAOImplementation method = new CoursesDAOImplementation();
 		ArrayList<CourseInfo> result = new ArrayList<CourseInfo>();
 		result = method.displayCourses(in);

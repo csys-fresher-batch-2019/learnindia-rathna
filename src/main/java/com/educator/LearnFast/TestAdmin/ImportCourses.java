@@ -24,12 +24,12 @@ public class ImportCourses {
 			int price = Integer.parseInt(row[4]);
 			int instructorId = Integer.parseInt(row[5]);
 			CourseInfo courses = new CourseInfo();
-			courses.courseName = courseName;
-			courses.durationOfCourse = durationOfCourse;
-			courses.instructorName = instructorName;
-			courses.courseCategory = courseCategory;
-			courses.price = price;
-			courses.instructorId = instructorId;
+			courses.setCourseName(courseName);
+			courses.setDurationOfCourse(durationOfCourse);
+			courses.setInstructorName(instructorName);
+			courses.setCourseCategory(courseCategory);
+			courses.setPrice(price);
+			courses.setInstructorId(instructorId);
 			CoursesDAOImplementation method = new CoursesDAOImplementation();
 			boolean returned = method.saveCourse(courses);
 			if(returned == true)

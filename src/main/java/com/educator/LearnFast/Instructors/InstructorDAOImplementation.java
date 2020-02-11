@@ -65,13 +65,13 @@ public class InstructorDAOImplementation implements InstructorDAO{
 			ps1.setInt(1, rs.getInt("course_id"));
 			ResultSet rs1 = ps1.executeQuery();
 			EnrollmentDetails cla = new EnrollmentDetails();
-			cla.courseName = rs.getString("course_name");
-			cla.duration = rs.getInt("duration_of_course");
+			cla.setCourseName(rs.getString("course_name"));
+			cla.setDuration( rs.getInt("duration_of_course"));
 			if(rs1.next()) {
-			cla.noOfEnrollments = rs1.getInt(1);
+			cla.setNoOfEnrollments(rs1.getInt(1));
 			}
 			else
-				cla.noOfEnrollments = 0;
+				cla.setNoOfEnrollments(0);
 			out.add(cla);
 		}
 		}}catch(Exception e) {
@@ -80,7 +80,7 @@ public class InstructorDAOImplementation implements InstructorDAO{
 		return out;
 	}
 	
-	public void instructorLogin(String email,String pass) throws Exception {
+	public void instructorLogin(String email,String pass){
 		String sql = "select instructor_password from instructor_info where instructor_email = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);){

@@ -16,7 +16,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 	public boolean saveCourse(CourseInfo course) {
 		String sqlsave = null;
 		 sqlsave = "insert into course_info(course_id,course_name,duration_of_course,instructor_name,instructor_id,course_category,price) "
-				+ "values(course_id_seq.nextval,'"+course.courseName+"',"+course.durationOfCourse+",'"+course.instructorName+"',"+course.instructorId+",'"+course.courseCategory+"',"+course.price+")";
+				+ "values(course_id_seq.nextval,'"+course.getCourseName()+"',"+course.getDurationOfCourse()+",'"+course.getInstructorName()+"',"+course.getInstructorId()+",'"+course.getCourseCategory()+"',"+course.getPrice()+")";
 		 int row = 0;
 		 try(Connection con = TestConnection.getConnection();
 					Statement stmt = con.createStatement();){
@@ -62,46 +62,46 @@ public class CoursesDAOImplementation implements CoursesDAO {
 		public ArrayList<CourseInfo> displayCourses(CourseInfo course) {
 			int key=0;
 			String sql=null;
-			if(course.courseName.length()!=0) {
-				if(course.instructorName.length()!=0)
+			if(course.getCourseName().length()!=0) {
+				if(course.getInstructorName().length()!=0)
 					key = 2;
-				else if(course.price==0)
+				else if(course.getPrice()==0)
 					key = 3;
 				else
 					key = 1;
 			}
-			else if(course.courseCategory.length()!=0)
+			else if(course.getCourseCategory().length()!=0)
 				key = 4;
-			else if(course.price ==0)
+			else if(course.getPrice() ==0)
 				key =5;
-			else if(course.courseCategory.length()!=0 && course.instructorName.length()!=0)
+			else if(course.getCourseCategory().length()!=0 && course.getInstructorName().length()!=0)
 				key =6;
-			else if(course.instructorName.length()!=0)
+			else if(course.getInstructorName().length()!=0)
 				key = 9;
 			switch(key) {
 			case 0:
 				sql = "select *from course_info";
 				break;
 			case 1:
-				sql = "select *from course_info where course_name = '"+course.courseName+"'";
+				sql = "select *from course_info where course_name = '"+course.getCourseName()+"'";
 				System.out.println(sql);
 				break;
 			case 2:
-				sql = "select *from course_info where course_name = '"+course.courseName+"' "
-						+ "and instructor_name = '"+course.instructorName+"'";
+				sql = "select *from course_info where course_name = '"+course.getCourseName()+"' "
+						+ "and instructor_name = '"+course.getInstructorName()+"'";
 				break;
 			case 3:
-				sql = "select *from course_info where course_name = '"+course.courseName+"' and price = 0";
+				sql = "select *from course_info where course_name = '"+course.getCourseName()+"' and price = 0";
 				break;
 			case 4:
-				sql = "select *from course_info where course_category = '"+course.courseCategory+"'";
+				sql = "select *from course_info where course_category = '"+course.getCourseCategory()+"'";
 				break;
 			case 5:
 				sql = "select *from course_info where price = 0";
 				break;
 			case 6:
-				sql = "select *from course_info where course_category = '"+course.courseCategory+"' "
-						+ "and instructor_name = '"+course.instructorName+"'";
+				sql = "select *from course_info where course_category = '"+course.getCourseCategory()+"' "
+						+ "and instructor_name = '"+course.getInstructorName()+"'";
 				break;
 			default:
 				System.out.println("Invalid Operation");
@@ -113,12 +113,12 @@ public class CoursesDAOImplementation implements CoursesDAO {
 					try (ResultSet rs=stmt.executeQuery(sql);){
 						while(rs.next()) {
 							CourseInfo obj = new CourseInfo();
-							obj.courseId = rs.getInt("course_id");
-							obj.courseName = rs.getString("course_name");
-							obj.durationOfCourse = rs.getInt("duration_of_course");
-							obj.instructorName = rs.getString("instructor_name");
-							obj.courseCategory = rs.getString("course_category");
-							obj.price = rs.getInt("price");
+							obj.setCourseId(rs.getInt("course_id"));
+							obj.setCourseName(rs.getString("course_name"));
+							obj.setDurationOfCourse(rs.getInt("duration_of_course"));
+							obj.setInstructorName(rs.getString("instructor_name"));
+							obj.setCourseCategory(rs.getString("course_category"));
+							obj.setPrice(rs.getInt("price"));
 							out.add(obj);
 						}
 					}} catch ( Exception e) {
