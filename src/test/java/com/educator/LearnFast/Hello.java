@@ -14,11 +14,11 @@ public class Hello {
 		UserInfo user1 = new UserInfo();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter user name");
-		user1.userName = sc.nextLine();
+		user1.setUserName(sc.nextLine());
 		System.out.println("Enter emailId");
-		user1.emailId = sc.nextLine();
+		user1.setEmailId(sc.nextLine());
 		System.out.println("Enter password");
-		user1.userPassword = sc.nextLine();
+		user1.setUserPassword(sc.nextLine());
 		add1.addUser(user1);
 	}
 

@@ -11,10 +11,10 @@ public class EnrollmentDAOImplementation implements EnrollmentDAO{
 	
 	public void saveEnrollment(EnrollmentInfo enrollment) {
 		UserDAOImplementation check = new UserDAOImplementation();
-		int ck = check.getNoOfCourses(enrollment.userId);
+		int ck = check.getNoOfCourses(enrollment.getUserId());
 		if(ck<5) {
 		String sqls = "insert into enrollment_info(enrollment_id,course_id,user_id,enrolled_date,ending_date,status) "
-				+ "values(enrollment_id_seq.nextval,"+enrollment.courseId+","+enrollment.userId+",SYSDATE,(SYSDATE+((select duration_of_course from course_info where course_id="+enrollment.courseId+")*7)),'"+EnrollmentStatusEnum.ONGOING+"')";
+				+ "values(enrollment_id_seq.nextval,"+enrollment.getCourseId()+","+enrollment.getUserId()+",SYSDATE,(SYSDATE+((select duration_of_course from course_info where course_id="+enrollment.getCourseId()+")*7)),'"+EnrollmentStatusEnum.ONGOING+"')";
 		int row2 = 0;
 		try (Connection con2 = TestConnection.getConnection();
 			Statement stmt2 = con2.createStatement();){
@@ -25,7 +25,7 @@ public class EnrollmentDAOImplementation implements EnrollmentDAO{
 			}
 		if (row2 == 1) {
 			String sqlse = "update user_info set no_of_courses_enrolled = (no_of_courses_enrolled+1)"
-					+ " where user_id = "+enrollment.userId+"";
+					+ " where user_id = "+enrollment.getUserId()+"";
 			int row1 = 0;
 			try(Connection con1 = TestConnection.getConnection();
 				Statement stmt1 = con1.createStatement();){
@@ -79,11 +79,11 @@ public class EnrollmentDAOImplementation implements EnrollmentDAO{
 				if(rs.next()) {
 					int enrollmentId = rs.getInt("enrollment_id");
 					int CourseId = rs.getInt("course_id");
-					ei.enrollmentId = enrollmentId;
-					ei.courseId = CourseId;
-					ei.enrolledDate = rs.getDate("enrolled_date");
-					ei.endingDate = rs.getDate("ending_date");
-					ei.status = EnrollmentStatusEnum.valueOf(rs.getString("status"));
+					ei.setEnrollmentId(enrollmentId);
+					ei.setCourseId(CourseId);
+					ei.setEnrolledDate(rs.getDate("enrolled_date"));
+					ei.setEndingDate(rs.getDate("ending_date"));
+					ei.setStatus(EnrollmentStatusEnum.valueOf(rs.getString("status")));
 				}
 			}} catch ( Exception e) {
 				// TODO Auto-generated catch block

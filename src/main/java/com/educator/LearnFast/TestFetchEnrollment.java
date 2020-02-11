@@ -15,9 +15,9 @@ public class TestFetchEnrollment {
 		res = fetch.fetchEnrollment(id);
 		//System.out.println(res.enrollmentId);
 		//System.out.println(res.courseId);
-		System.out.println(res.enrolledDate);
-		System.out.println(res.endingDate);
-		System.out.println(res.status);
+		System.out.println(res.getEnrolledDate());
+		System.out.println(res.getEndingDate());
+		System.out.println(res.getStatus());
 		
 	}
 

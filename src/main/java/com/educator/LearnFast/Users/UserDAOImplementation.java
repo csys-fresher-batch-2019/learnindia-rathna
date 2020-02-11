@@ -23,7 +23,7 @@ public class UserDAOImplementation implements UserDAO{
 	
 	public int addUser(UserInfo user) {
 		String sqlinsert = "insert into user_info(user_id,username,email_id,user_password) "
-				+ "values(user_id_seq.nextval,'"+user.userName+"','"+user.emailId+"','"+user.userPassword+"')";
+				+ "values(user_id_seq.nextval,'"+user.getUserName()+"','"+user.getEmailId()+"','"+user.getUserPassword()+"')";
 		try (Connection con = TestConnection.getConnection();
 			Statement stmt = con.createStatement();){
 				int row = stmt.executeUpdate(sqlinsert);

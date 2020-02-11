@@ -22,10 +22,10 @@ public class InstructorDAOImplementation implements InstructorDAO{
 		int row = 0;
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);){
-		ps.setString(1, in.instructorName);
-		ps.setString(2, in.instructorEmail);
-		ps.setString(3, in.instructorPassword);
-		ps.setString(4, in.areaOfInterest);
+		ps.setString(1, in.getInstructorName());
+		ps.setString(2, in.getInstructorEmail());
+		ps.setString(3, in.getInstructorPassword());
+		ps.setString(4, in.getAreaOfInterest());
 		//System.out.println(sql);
 		row = ps.executeUpdate();
 		//System.out.println("No.of.rows inserted:"+row);
@@ -61,9 +61,10 @@ public class InstructorDAOImplementation implements InstructorDAO{
 		while(rs.next()) {
 	
 			String sql1 ="select count(enrollment_id) from enrollment_info where course_id = ?";
-			PreparedStatement ps1 = con.prepareStatement(sql1);
+			try(Connection con1 = TestConnection.getConnection();
+			PreparedStatement ps1 = con1.prepareStatement(sql1);){
 			ps1.setInt(1, rs.getInt("course_id"));
-			ResultSet rs1 = ps1.executeQuery();
+			try(ResultSet rs1 = ps1.executeQuery();){
 			EnrollmentDetails cla = new EnrollmentDetails();
 			cla.setCourseName(rs.getString("course_name"));
 			cla.setDuration( rs.getInt("duration_of_course"));
@@ -73,8 +74,11 @@ public class InstructorDAOImplementation implements InstructorDAO{
 			else
 				cla.setNoOfEnrollments(0);
 			out.add(cla);
-		}
 		}}catch(Exception e) {
+			System.out.println("Cannot fetch enorllment details for the given course");
+		}
+		}}	
+		}catch(Exception e) {
 			System.out.println();
 		}
 		return out;
@@ -91,9 +95,10 @@ public class InstructorDAOImplementation implements InstructorDAO{
 			String password = rs.getString(1);
 			if(password.equalsIgnoreCase(pass)) {
 				String sql2 = "select instructor_id from instructor_info where instructor_email = ?";
-				PreparedStatement ps2 = con.prepareStatement(sql2);
+				try(Connection con1 = TestConnection.getConnection();
+				PreparedStatement ps2 = con.prepareStatement(sql2);){
 				ps2.setString(1, email);
-				ResultSet rs2 = ps2.executeQuery();
+				try(ResultSet rs2 = ps2.executeQuery();){
 				int id = 0;
 				if(rs2.next())
 					id =  rs2.getInt(1);
@@ -123,6 +128,9 @@ public class InstructorDAOImplementation implements InstructorDAO{
 						break;
 					}
 				}
+			}}catch(Exception e) {
+				System.out.println("Cannot fetch instructor id for the given instructor email");
+			}
 			}
 			else
 				System.out.println("Invalid username or password please try again");

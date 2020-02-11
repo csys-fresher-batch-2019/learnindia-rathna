@@ -12,13 +12,13 @@ public class TestSaveInstructor {
 		InstructorDAOImplementation imp = new InstructorDAOImplementation();
 		InstructorInfo info = new InstructorInfo();
 		System.out.println("Enter instructor name:");
-		info.instructorName = sc.next();
+		info.setInstructorName(sc.next());
 		System.out.println("Enter instructor email:");
-		info.instructorEmail = sc.next();
+		info.setInstructorEmail(sc.next());
 		System.out.println("Enter instructor password:");
-		info.instructorPassword = sc.next();
+		info.setInstructorPassword(sc.next());
 		System.out.println("Enter area of interest:");
-		info.areaOfInterest = sc.next();
+		info.setAreaOfInterest(sc.next());
 		imp.saveInstructor(info);
 	}
 

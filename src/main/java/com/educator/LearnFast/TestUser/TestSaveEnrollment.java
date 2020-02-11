@@ -12,9 +12,9 @@ public class TestSaveEnrollment {
 		Scanner sc = new Scanner(System.in);
 		//System.out.println("Enter user id:");
 		//enInfo.userId = sc.nextInt();
-		enInfo.userId = id;
+		enInfo.setUserId(id);
 		System.out.println("Enter course id:");
-		enInfo.courseId = sc.nextInt();
+		enInfo.setCourseId(sc.nextInt());
 		enS.saveEnrollment(enInfo);
 	}
 
