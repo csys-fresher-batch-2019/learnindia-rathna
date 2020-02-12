@@ -1,4 +1,5 @@
 package com.educator.LearnFast.Enrollments;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
@@ -9,37 +10,25 @@ import com.educator.LearnFast.Users.UserDAOImplementation;
 
 public class EnrollmentDAOImplementation implements EnrollmentDAO{
 	
-	public void saveEnrollment(EnrollmentInfo enrollment) {
-		UserDAOImplementation check = new UserDAOImplementation();
-		int ck = check.getNoOfCourses(enrollment.getUserId());
-		if(ck<5) {
-		String sqls = "insert into enrollment_info(enrollment_id,course_id,user_id,enrolled_date,ending_date,status) "
-				+ "values(enrollment_id_seq.nextval,"+enrollment.getCourseId()+","+enrollment.getUserId()+",SYSDATE,(SYSDATE+((select duration_of_course from course_info where course_id="+enrollment.getCourseId()+")*7)),'"+EnrollmentStatusEnum.ONGOING+"')";
-		int row2 = 0;
-		try (Connection con2 = TestConnection.getConnection();
-			Statement stmt2 = con2.createStatement();){
-				row2 = stmt2.executeUpdate(sqls);
-			} catch ( Exception e) {
+	public void saveEnrollment(EnrollmentInfo enrollment)  {
+		boolean row = false;
+		String error = null;
+	try(Connection con = TestConnection.getConnection();
+		CallableStatement cstmt = con.prepareCall("{call PR_INSERT_ENROLLMENT(?,?,?)}");){
+			cstmt.setInt(1, enrollment.getUserId());
+			cstmt.setInt(2, enrollment.getCourseId());
+			cstmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+				row = cstmt.execute();
+				error = cstmt.getString(3);
+			}catch ( Exception e) {
 				// TODO Auto-generated catch block
-				System.out.println("CourseId you have entered is Invalid");
+				System.out.println("cannot enroll the course");
 			}
-		if (row2 == 1) {
-			String sqlse = "update user_info set no_of_courses_enrolled = (no_of_courses_enrolled+1)"
-					+ " where user_id = "+enrollment.getUserId()+"";
-			int row1 = 0;
-			try(Connection con1 = TestConnection.getConnection();
-				Statement stmt1 = con1.createStatement();){
-				 row1 = stmt1.executeUpdate(sqlse);
-				if(row1 == 1)
-				System.out.println("Course Enrolled");
-				}catch( Exception e) {
-					System.out.println("Cannot update no_of_courses enrolled in user database");
-				}
-		}
-		}
-		else {
-			System.out.println("you cannot enroll more than 5 course");
-		}
+			if(error!=null){
+				System.out.println(error);
+			}
+		if(row == true)
+			System.out.println("Course Enrolled");
 	}
 	
 	public void removeEnrollment(int CourseId,int UserId) {

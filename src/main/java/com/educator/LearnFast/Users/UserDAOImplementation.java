@@ -21,17 +21,13 @@ import com.educator.LearnFast.Enrollments.EnrollmentDAOImplementation;
 public class UserDAOImplementation implements UserDAO{
 
 	
-	public int addUser(UserInfo user) {
+	public int addUser(UserInfo user) throws Exception {
 		String sqlinsert = "insert into user_info(user_id,username,email_id,user_password) "
 				+ "values(user_id_seq.nextval,'"+user.getUserName()+"','"+user.getEmailId()+"','"+user.getUserPassword()+"')";
-		try (Connection con = TestConnection.getConnection();
-			Statement stmt = con.createStatement();){
+		Connection con = TestConnection.getConnection();
+			Statement stmt = con.createStatement();
 				int row = stmt.executeUpdate(sqlinsert);
 				System.out.println("Account Created");
-			} catch ( Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("Cannot inser user");
-			}
 		return 1;
 	}
 	
@@ -96,11 +92,11 @@ public class UserDAOImplementation implements UserDAO{
 			try(ResultSet rs = stmt.executeQuery(query);){
 			while(rs.next()) {
 				CourseHistory ch = new CourseHistory();
-				ch.courseName = rs.getString("course_name");
-				ch.courseId = rs.getInt("course_id");
-				ch.instructorName = rs.getString("instructor_name");
-				ch.enrolled_date = rs.getDate("enrolled_date");
-				ch.ending_date = rs.getDate("ending_date");
+				ch.setCourseName(rs.getString("course_name"));
+				ch.setCourseId(rs.getInt("course_id"));
+				ch.setInstructorName(rs.getString("instructor_name"));
+				ch.setEnrolled_date(rs.getDate("enrolled_date"));
+				ch.setEnding_date(rs.getDate("ending_date"));
 				chrs.add(ch);
 			}
 		} }catch (Exception e) {
@@ -135,10 +131,10 @@ public class UserDAOImplementation implements UserDAO{
 				System.out.println("Enter 6 to Add Course Rating");
 				System.out.println("Enter 7 to logout");
 				String sql2 = "select user_id from user_info where email_id = ?";
-				Connection con2 = TestConnection.getConnection();
-				PreparedStatement ps2 = con2.prepareStatement(sql2);
+				try(Connection con2 = TestConnection.getConnection();
+				PreparedStatement ps2 = con2.prepareStatement(sql2);){
 				ps2.setString(1, email);
-				ResultSet rs2 = ps2.executeQuery();
+				try(ResultSet rs2 = ps2.executeQuery();){
 				/*if(rs2.next()) {
 					userId = rs2.getInt(1);
 				}*/
@@ -179,18 +175,15 @@ public class UserDAOImplementation implements UserDAO{
 					break;
 				}
 				key = 0;
+				}}catch(Exception e) {
+					System.out.println();
 				}
-				con.close();
-				stmt.close();
-				sc.close();
-			}
+			}}
 			else
 				System.out.println("Invalid username or passowrd");
 		}
 			else
 				System.out.println("Invalid UserName or Password");
-			con.close();
-			stmt.close();
 		} }catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("invalid username or password");

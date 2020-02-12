@@ -61,52 +61,23 @@ public class CoursesDAOImplementation implements CoursesDAO {
 		
 		public ArrayList<CourseInfo> displayCourses(CourseInfo course) {
 			int key=0;
+			String sqlt = null;
 			String sql=null;
+			StringBuilder sb1 = new StringBuilder("select *from course_info ");
 			if(course.getCourseName().length()!=0) {
+				sb1.append("where course_name = '"+course.getCourseName()+"'");
 				if(course.getInstructorName().length()!=0)
-					key = 2;
+					sb1.append("and instructor_name = '"+course.getInstructorName()+"'");
 				else if(course.getPrice()==0)
-					key = 3;
-				else
-					key = 1;
+					sb1.append("and price = 0");
 			}
 			else if(course.getCourseCategory().length()!=0)
-				key = 4;
+				sb1.append("where course_category = '"+course.getCourseCategory()+"'");
 			else if(course.getPrice() ==0)
-				key =5;
+				sb1.append("where price = 0");
 			else if(course.getCourseCategory().length()!=0 && course.getInstructorName().length()!=0)
-				key =6;
-			else if(course.getInstructorName().length()!=0)
-				key = 9;
-			switch(key) {
-			case 0:
-				sql = "select *from course_info";
-				break;
-			case 1:
-				sql = "select *from course_info where course_name = '"+course.getCourseName()+"'";
-				System.out.println(sql);
-				break;
-			case 2:
-				sql = "select *from course_info where course_name = '"+course.getCourseName()+"' "
-						+ "and instructor_name = '"+course.getInstructorName()+"'";
-				break;
-			case 3:
-				sql = "select *from course_info where course_name = '"+course.getCourseName()+"' and price = 0";
-				break;
-			case 4:
-				sql = "select *from course_info where course_category = '"+course.getCourseCategory()+"'";
-				break;
-			case 5:
-				sql = "select *from course_info where price = 0";
-				break;
-			case 6:
-				sql = "select *from course_info where course_category = '"+course.getCourseCategory()+"' "
-						+ "and instructor_name = '"+course.getInstructorName()+"'";
-				break;
-			default:
-				System.out.println("Invalid Operation");
-				break;
-			}
+				sb1.append("where course_category = '"+course.getCourseCategory()+"' and instructor_name = '"+course.getInstructorName()+"'");
+			sql = sb1.toString();
 			ArrayList<CourseInfo> out = new ArrayList<CourseInfo>();
 			 try(Connection con = TestConnection.getConnection();
 					Statement stmt = con.createStatement();){
