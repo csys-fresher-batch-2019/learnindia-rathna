@@ -1,4 +1,4 @@
-package com.educator.LearnFast;
+package com.educator.learnfast;
 
 /**
  * Hello world!
