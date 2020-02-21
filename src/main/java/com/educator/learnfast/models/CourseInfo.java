@@ -16,11 +16,11 @@ public class CourseInfo {
 	private int rating;
 	private int instructorId;
 	private int noOfEnrollments;
-	private int getCourseId() {
-		return courseId;
-	}
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
+	}
+	public int getCourseId() {
+		return courseId;
 	}
 	public String getCourseName() {
 		return courseName;

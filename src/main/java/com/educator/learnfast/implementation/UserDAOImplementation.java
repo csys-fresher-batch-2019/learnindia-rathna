@@ -3,6 +3,7 @@ package com.educator.learnfast.implementation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -71,11 +72,11 @@ Logger logger = Logger.getInstance();
 	public  ArrayList<CourseHistory> getCourseHistory(int userId,int status){
 		String query;
 		switch(status) {
-		case 0:
+		case 1:
 			query = "select c.course_name,c.course_id,c.instructor_name,e.enrolled_date,e.ending_date "
 					+ "from course_info c,enrollment_info e where c.course_id = e.course_id and e.user_id = "+userId+" and e.status = 'COMPLETED'";
 			break;
-		case 1:
+		case 2:
 			query = "select c.course_name,c.course_id,c.instructor_name,e.enrolled_date,e.ending_date "
 					+ "from course_info c,enrollment_info e where c.course_id = e.course_id and e.user_id = "+userId+" and e.status = 'ONGOING'";
 			break;
@@ -84,6 +85,7 @@ Logger logger = Logger.getInstance();
 					+ "from course_info c,enrollment_info e where c.course_id = e.course_id and e.user_id = "+userId+"";
 			break;		
 		}
+		System.out.println(query);
 		ArrayList<CourseHistory> chrs = new ArrayList<CourseHistory>();
 		try (Connection con = TestConnection.getConnection();
 			Statement stmt =  con.createStatement();){
@@ -131,9 +133,21 @@ Logger logger = Logger.getInstance();
 				logger.info("Invalid UserName or Password");
 			}}catch(Exception e) {
 				logger.info("cannot check username and password");
+				e.printStackTrace();
 			}
 
 		return obj;
+	}
+	
+	public boolean Emailidcheck(String email) throws Exception {
+		boolean out = false;
+		String sql = "select email_id from user_info where email_id = '"+email+"'";
+		Connection con = TestConnection.getConnection();
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		if(rs.next())
+			out = true;
+		return out;
 	}
 }
 

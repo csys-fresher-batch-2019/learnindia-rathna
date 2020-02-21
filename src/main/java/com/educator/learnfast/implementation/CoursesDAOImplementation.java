@@ -82,20 +82,21 @@ public class CoursesDAOImplementation implements CoursesDAO {
 		public ArrayList<CourseInfo> displayCourses(CourseInfo course) throws DbException {
 			String sql=null;
 			StringBuilder sb1 = new StringBuilder("select *from course_info ");
-			if(course.getCourseName()!=null) {
+			if(course.getCourseName().length()!=0) {
 				sb1.append("where course_name = '"+course.getCourseName()+"'");
-				if(course.getInstructorName()!=null)
+				if(course.getInstructorName().length()!=0)
 					sb1.append("and instructor_name = '"+course.getInstructorName()+"'");
 				else if(course.getPrice()==0)
 					sb1.append("and price = 0");
 			}
-			else if(course.getCourseCategory()!=null)
+			else if(course.getCourseCategory().length()!=0)
 				sb1.append("where course_category = '"+course.getCourseCategory()+"'");
 			else if(course.getPrice() ==0)
 				sb1.append("where price = 0");
-			else if(course.getCourseCategory()!=null && course.getInstructorName()!=null)
+			else if(course.getCourseCategory().length()!=0 && course.getInstructorName().length()!=0)
 				sb1.append("where course_category = '"+course.getCourseCategory()+"' and instructor_name = '"+course.getInstructorName()+"'");
 			sql = sb1.toString();
+			System.out.println(sql);
 			ArrayList<CourseInfo> out = new ArrayList<CourseInfo>();
 			 try(Connection con = TestConnection.getConnection();
 					Statement stmt = con.createStatement();){

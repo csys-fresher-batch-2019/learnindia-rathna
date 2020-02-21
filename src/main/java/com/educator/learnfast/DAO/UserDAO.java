@@ -1,5 +1,6 @@
 package com.educator.learnfast.DAO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.educator.learnfast.models.CourseHistory;
@@ -16,5 +17,5 @@ public interface UserDAO {
 	
 	UserInfo UserLogin(String email,String pass) throws Exception;
 	
-	
+	boolean Emailidcheck(String email) throws Exception;
 }
