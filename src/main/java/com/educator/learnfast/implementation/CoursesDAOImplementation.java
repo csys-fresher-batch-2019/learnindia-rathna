@@ -110,7 +110,9 @@ public class CoursesDAOImplementation implements CoursesDAO {
 							obj.setInstructorName(rs.getString("instructor_name"));
 							obj.setCourseCategory(rs.getString("course_category"));
 							obj.setPrice(rs.getInt("price"));
+							System.out.println(obj);
 							out.add(obj);
+							System.out.println("hi");
 						}
 					}}catch(DbException e) {
 						throw new DbException(InfoMessages.SEARCHCOURSE);
