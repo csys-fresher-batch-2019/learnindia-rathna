@@ -14,4 +14,5 @@ public class InfoMessages {
 	public static final String COURSERATING = "Unable to Add Average Rating to the Course";
 	public static final String GETENROLLMENT = "Unable to get No.Of.Courses Enrolled";
 	public static final String SAVEENROLLMENT = "Unable to Save Enrollment";
+	public static final String COURSECONTENT = "Unable to fetch Course Content";
 }

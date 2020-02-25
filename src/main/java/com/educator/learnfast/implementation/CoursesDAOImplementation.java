@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.educator.learnfast.DAO.CoursesDAO;
 import com.educator.learnfast.Exception.DbException;
 import com.educator.learnfast.Exception.InfoMessages;
+import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 import com.educator.learnfast.util.Logger;
 import com.educator.learnfast.util.TestConnection;
@@ -83,9 +84,9 @@ public class CoursesDAOImplementation implements CoursesDAO {
 			String sql=null;
 			StringBuilder sb1 = new StringBuilder("select *from course_info ");
 			if(course.getCourseName().length()!=0) {
-				sb1.append("where course_name = '"+course.getCourseName()+"'");
+				sb1.append("where course_name like '%"+course.getCourseName()+"%'");
 				if(course.getInstructorName().length()!=0)
-					sb1.append("and instructor_name = '"+course.getInstructorName()+"'");
+					sb1.append("and instructor_name like '%"+course.getInstructorName()+"%'");
 				else if(course.getPrice()==0)
 					sb1.append("and price = 0");
 			}
@@ -94,7 +95,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 			else if(course.getPrice() ==0)
 				sb1.append("where price = 0");
 			else if(course.getCourseCategory().length()!=0 && course.getInstructorName().length()!=0)
-				sb1.append("where course_category = '"+course.getCourseCategory()+"' and instructor_name = '"+course.getInstructorName()+"'");
+				sb1.append("where course_category = '"+course.getCourseCategory()+"' and instructor_name like '%"+course.getInstructorName()+"%'");
 			sql = sb1.toString();
 			System.out.println(sql);
 			ArrayList<CourseInfo> out = new ArrayList<CourseInfo>();
@@ -157,5 +158,33 @@ public class CoursesDAOImplementation implements CoursesDAO {
 				return true;
 			else
 				return false;
+		}
+
+		public ArrayList<ContentInfo> fetchCourseContent(int courseId) throws Exception {
+			String sql = "select course_content,chapter_no from content_info where course_id = ?";
+			System.out.println("hello");
+			System.out.println(courseId);
+			ArrayList<ContentInfo> list = new ArrayList<ContentInfo>();
+			try(Connection con = TestConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement(sql);){
+				ps.setInt(1, courseId);
+				try(ResultSet rs = ps.executeQuery();){
+					while(rs.next()) {
+						System.out.println("hi");
+						ContentInfo ci = new ContentInfo();
+						ci.setChapterNo(rs.getInt("chapter_no"));
+						ci.setCourseContent(rs.getString("course_content"));
+						System.out.println(ci.getCourseContent());
+						list.add(ci);
+					}
+				}
+			}catch(DbException e) {
+				e.printStackTrace();
+				throw new DbException(InfoMessages.COURSECONTENT);
+			}catch(Exception e) {
+				e.printStackTrace();
+				throw new DbException(InfoMessages.CONNECTION);
+			}
+			return list;
 		}	
 }
