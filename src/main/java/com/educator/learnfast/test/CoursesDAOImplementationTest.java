@@ -1,4 +1,4 @@
-package Test;
+package com.educator.learnfast.test;
 
 import java.util.ArrayList;
 
