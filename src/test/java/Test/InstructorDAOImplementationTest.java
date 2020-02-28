@@ -1,9 +1,10 @@
-package com.educator.learnfast.test;
+package Test;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Ignore;
 import org.junit.Test;
+
 
 import com.educator.learnfast.implementation.InstructorDAOImplementation;
 import com.educator.learnfast.models.InstructorInfo;
@@ -14,8 +15,8 @@ public class InstructorDAOImplementationTest {
 	public void test() {
 		boolean expected = true;
 		InstructorInfo arg = new InstructorInfo();
-		arg.setInstructorName("shans");
-		arg.setInstructorEmail("shans@gmail.com");
+		arg.setInstructorName("shanss");
+		arg.setInstructorEmail("shanss@gmail.com");
 		arg.setInstructorPassword("shans123");
 		arg.setAreaOfInterest("Power Electronics");
 		InstructorDAOImplementation check = new InstructorDAOImplementation();
@@ -23,7 +24,7 @@ public class InstructorDAOImplementationTest {
 		assertEquals(expected,actual);
 	}
 	
-	@Test
+	@Test @Ignore
 	public void testInstructorLogin() {
 		InstructorInfo expected = new InstructorInfo();
 		String email = "sanjay@gmail.com";

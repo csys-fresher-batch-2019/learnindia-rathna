@@ -1,4 +1,4 @@
-package com.educator.learnfast.test;
+package Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ public class EnrollmentDAOImplementationTest {
 
 	@Test
 	public void testSaveEnrollment() throws Exception {
-		int userId = 53;
+		int userId = 76;
 		int courseId = 20210;
 		EnrollmentDAOImplementation check = new EnrollmentDAOImplementation();
 		boolean expected = true;
@@ -25,7 +25,7 @@ public class EnrollmentDAOImplementationTest {
 	}
 	
 	
-	@Test 
+	@Test @Ignore
 	public void testRemoveEnrollment() {
 		int userId =53;
 		int courseId = 20209;
@@ -36,7 +36,7 @@ public class EnrollmentDAOImplementationTest {
 	}
 	
 	
-	@Test 
+	@Test @Ignore
 	public void testFetchEnrollment() {
 		EnrollmentDAOImplementation check = new EnrollmentDAOImplementation();
 		int EnrollmentId = 313;
