@@ -7,15 +7,18 @@ import com.educator.learnfast.models.CourseHistory;
 import com.educator.learnfast.models.UserInfo;
 
 public interface UserDAO {
-	boolean addUser(UserInfo user) throws Exception;
-	
-	boolean deleteUser(int userId) throws Exception;
-	
-	int getNoOfCourses(int userid) throws Exception;
-	
-	ArrayList<CourseHistory> getCourseHistory(int userId,int status) throws Exception;
-	
-	UserInfo UserLogin(String email,String pass) throws Exception;
-	
-	boolean Emailidcheck(String email) throws Exception;
+	boolean addUser(UserInfo user);
+
+	boolean deleteUser(int userId);
+
+	ArrayList<CourseHistory> getCourseHistory(int userId, int status);
+
+	UserInfo UserLogin(String email, String pass);
+
+	int count(int userId);
+
+	boolean updateNoOfCoursesEnrolled(int userId);
+
+	boolean getEmail(String email);
+
 }

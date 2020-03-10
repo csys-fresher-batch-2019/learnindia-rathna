@@ -2,15 +2,17 @@ package com.educator.learnfast.DAO;
 
 import java.util.ArrayList;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.educator.learnfast.models.EnrollmentDetails;
 import com.educator.learnfast.models.InstructorInfo;
+import com.educator.learnfast.util.ConnectionUtil;
 
 public interface InstructorDAO {
-	boolean saveInstructor(InstructorInfo in) throws Exception;
-	
-	boolean removeInstructor(int instructorId) throws Exception;
-	
-	InstructorInfo instructorLogin(String email, String pass) throws Exception;
-	
-	ArrayList<EnrollmentDetails> getEnrollmentDetails(int id) throws Exception;
+
+	public boolean saveInstructor(InstructorInfo in);
+
+	InstructorInfo instructorLogin(String email, String pass);
+
+	public boolean getEmail(String email);
 }

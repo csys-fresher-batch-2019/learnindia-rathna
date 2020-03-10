@@ -7,15 +7,19 @@ import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 
 public interface CoursesDAO {
-	int getNoOfEnrollment(int courseId) throws Exception ;
-	
-	boolean saveCourse(CourseInfo course) throws Exception;
-	
-	boolean removeCourse(int courseId) throws Exception;
-	
-	ArrayList<CourseInfo> displayCourses(CourseInfo course) throws Exception;
-	
-	boolean addCourseRating(int rating,int courseId,int userId) throws Exception;
-	
-	ArrayList<ContentInfo> fetchCourseContent(int courseId) throws Exception;
+	int getNoOfEnrollment(int courseId);
+
+	boolean saveCourse(CourseInfo course);
+
+	boolean removeCourse(int courseId);
+
+	ArrayList<CourseInfo> displayCourses(CourseInfo course);
+
+	boolean addCourseRating(int rating, int courseId, int userId);
+
+	ArrayList<ContentInfo> fetchCourseContent(int courseId);
+
+	boolean saveContent(ContentInfo ci);
+
+	boolean deleteContent(int courseId, int chapterNo);
 }

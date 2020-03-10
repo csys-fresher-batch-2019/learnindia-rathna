@@ -1,8 +1,7 @@
 package com.educator.learnfast.util;
+
 import java.sql.DriverManager;
 import java.sql.Connection;
-
-
 
 public class TestConnection{
 	public static Connection getConnection() throws Exception {

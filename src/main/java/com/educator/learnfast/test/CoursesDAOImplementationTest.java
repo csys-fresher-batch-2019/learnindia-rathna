@@ -1,52 +1,56 @@
 package com.educator.learnfast.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.educator.learnfast.DAO.implementation.CoursesDAOImplementation;
 import com.educator.learnfast.Exception.DbException;
-import com.educator.learnfast.implementation.CoursesDAOImplementation;
+import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
+import com.educator.learnfast.service.CoursesService;
 
-import junit.framework.TestCase;
 
-public class CoursesDAOImplementationTest extends TestCase {
+public class CoursesDAOImplementationTest  {
 	
-	@Test 
+	CoursesService met = new CoursesService();
+	
+	@Ignore
+	@Test
 	public void testSaveCourse() throws Exception {
 		CourseInfo obj = new CourseInfo();
-		obj.setCourseName("SpokenEnglish");
-		obj.setCourseCategory("Personality Development");
-		obj.setInstructorId(3);
-		obj.setInstructorName("Vasudevan");
-		obj.setDurationOfCourse(4);
-		obj.setPrice(100);
+		obj.setCourseName("Algebra2");
+		obj.setCourseCategory("Maths");
+		obj.setInstructorId(2);
+		obj.setInstructorName("Salmankhan");
+		obj.setDurationOfCourse(8);
+		obj.setPrice(0);
 		boolean expected = true;
-		CoursesDAOImplementation met = new CoursesDAOImplementation();
 		boolean actual = met.saveCourse(obj);
 		assertEquals(expected,actual);
 	}
 	
-	@Test 
-	public void testRemoveCourse() throws DbException {
-		int courseId  = 20227;
+	@Test @Ignore
+	public void testRemoveCourse() throws Exception {
+		int courseId  = 20211;
 		boolean expected = true;
-		CoursesDAOImplementation remove = new CoursesDAOImplementation();
-		boolean actual = remove.removeCourse(courseId);
+		boolean actual = met.removeCourse(courseId);
 		assertEquals(expected,actual);
 	}
 	
-	@Test 
+	@Test @Ignore
 	public void testgetNoOfEnrollment() throws Exception {
-		int courseId = 20205;
-		int expected = 1;
+		int courseId = 20202;
+		int expected = 5;
 		CoursesDAOImplementation course = new CoursesDAOImplementation();
 		int actual = course.getNoOfEnrollment(courseId);
 		assertEquals(expected,actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testDisplayCourses() throws DbException {
 		CourseInfo argu = new CourseInfo();
 		CoursesDAOImplementation check = new CoursesDAOImplementation();
@@ -66,16 +70,59 @@ public class CoursesDAOImplementationTest extends TestCase {
 		assertEquals(expected,actual);
 	}
 	
-	@Test 
-	public void testCourseRating() throws DbException {
-		int courseId = 20209;
-		int userId = 53;
-		int rating = 5;
-		CoursesDAOImplementation check = new CoursesDAOImplementation();
+	@Test @Ignore
+	public void testCourseRating() throws Exception {
+		int courseId = 20202;
+		int userId = 64;
+		int rating = 3;
 		boolean expected = true;
-		boolean actual = check.addCourseRating(rating, courseId, userId);
+		boolean actual = met.addCourseRating(rating, courseId, userId);
 		assertEquals(expected,actual);
 	}
 	
+	@Test @Ignore
+	public void testFetchCourseContent() throws Exception {
+		ArrayList<ContentInfo> expected = new ArrayList<>();
+		int courseId = 20204;
+		ContentInfo c1 = new ContentInfo();
+		c1.setChapterNo(1);
+		c1.setCourseContent("Setting the Scene for Conversation");
+		ContentInfo c2 = new ContentInfo();
+		c2.setChapterNo(2);
+		c2.setCourseContent("you are your Message");
+		ContentInfo c3 = new ContentInfo();
+		c3.setChapterNo(3);
+		c3.setCourseContent("Telling people things they might not want to hear");
+		ContentInfo c4 = new ContentInfo();
+		c4.setChapterNo(4);
+		c4.setCourseContent("Positive Communication");
+		expected.add(c1);
+		expected.add(c2);
+		expected.add(c3);
+		expected.add(c4);
+		ArrayList<ContentInfo> actual = new ArrayList<>();
+		actual = met.fetchCourseContent(courseId);
+		assertEquals(expected,actual);
+	}
+	
+	@Test @Ignore
+	public void saveContent() {
+		ContentInfo contentInfo = new ContentInfo();
+		contentInfo.setChapterNo(5);
+		contentInfo.setCourseId(20205);
+		contentInfo.setCourseContent("Improve Your Communication Skills");
+		boolean expected = true;
+		boolean actual = met.saveContent(contentInfo);
+		assertEquals(expected, actual);
+	}
+	
+	@Test @Ignore
+	public void deleteContent() {
+		int courseId = 20205;
+		int chapterNo = 5;
+		boolean expected = true;
+		boolean actual = met.deleteContent(courseId, chapterNo);
+		assertEquals(expected, actual);
+	}
 	
 }

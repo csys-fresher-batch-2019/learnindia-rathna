@@ -1,6 +1,35 @@
 package com.educator.learnfast.models;
 
 public class ContentInfo {
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + chapterNo;
+		result = prime * result + ((courseContent == null) ? 0 : courseContent.hashCode());
+		result = prime * result + courseId;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ContentInfo other = (ContentInfo) obj;
+		if (chapterNo != other.chapterNo)
+			return false;
+		if (courseContent == null) {
+			if (other.courseContent != null)
+				return false;
+		} else if (!courseContent.equals(other.courseContent))
+			return false;
+		if (courseId != other.courseId)
+			return false;
+		return true;
+	}
 	private int courseId;
 	private String courseContent;
 	private int chapterNo;

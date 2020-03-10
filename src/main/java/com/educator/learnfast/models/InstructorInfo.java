@@ -6,14 +6,17 @@ public class InstructorInfo {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((areaOfInterest == null) ? 0 : areaOfInterest.hashCode());
-		result = prime * result + coursesHandling;
 		result = prime * result + ((instructorEmail == null) ? 0 : instructorEmail.hashCode());
 		result = prime * result + instructorId;
 		result = prime * result + ((instructorName == null) ? 0 : instructorName.hashCode());
 		result = prime * result + ((instructorPassword == null) ? 0 : instructorPassword.hashCode());
-		result = prime * result + rating;
-		result = prime * result + ((recentWorks == null) ? 0 : recentWorks.hashCode());
 		return result;
+	}
+	@Override
+	public String toString() {
+		return "InstructorInfo [instructorId=" + instructorId + ", instructorName=" + instructorName
+				+ ", instructorEmail=" + instructorEmail + ", instructorPassword=" + instructorPassword
+				+ ", areaOfInterest=" + areaOfInterest + "]";
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -28,8 +31,6 @@ public class InstructorInfo {
 			if (other.areaOfInterest != null)
 				return false;
 		} else if (!areaOfInterest.equals(other.areaOfInterest))
-			return false;
-		if (coursesHandling != other.coursesHandling)
 			return false;
 		if (instructorEmail == null) {
 			if (other.instructorEmail != null)
@@ -48,13 +49,6 @@ public class InstructorInfo {
 				return false;
 		} else if (!instructorPassword.equals(other.instructorPassword))
 			return false;
-		if (rating != other.rating)
-			return false;
-		if (recentWorks == null) {
-			if (other.recentWorks != null)
-				return false;
-		} else if (!recentWorks.equals(other.recentWorks))
-			return false;
 		return true;
 	}
 	private int instructorId;
@@ -62,9 +56,6 @@ public class InstructorInfo {
 	private String instructorEmail;
 	private String instructorPassword;
 	private String areaOfInterest;
-	private int coursesHandling;
-	private String recentWorks;
-	private int rating;
 	public int getInstructorId() {
 		return instructorId;
 	}
@@ -94,23 +85,5 @@ public class InstructorInfo {
 	}
 	public void setAreaOfInterest(String areaOfInterest) {
 		this.areaOfInterest = areaOfInterest;
-	}
-	public int getCoursesHandling() {
-		return coursesHandling;
-	}
-	public void setCoursesHandling(int coursesHandling) {
-		this.coursesHandling = coursesHandling;
-	}
-	public String getRecentWorks() {
-		return recentWorks;
-	}
-	public void setRecentWorks(String recentWorks) {
-		this.recentWorks = recentWorks;
-	}
-	public int getRating() {
-		return rating;
-	}
-	public void setRating(int rating) {
-		this.rating = rating;
 	}
 }
