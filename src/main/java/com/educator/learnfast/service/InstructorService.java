@@ -4,6 +4,8 @@ import com.educator.learnfast.DAO.InstructorDAO;
 import com.educator.learnfast.DAO.implementation.InstructorDAOImplementation;
 import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.exception.InfoMessages;
+import com.educator.learnfast.exception.ServiceException;
+import com.educator.learnfast.exception.ValidationException;
 import com.educator.learnfast.models.InstructorInfo;
 import com.educator.learnfast.validation.InstructorValidation;
 
@@ -17,12 +19,12 @@ public class InstructorService {
 		return val;
 	}
 
-	public InstructorInfo instructorLogin(String email, String pass) throws Exception {
+	public InstructorInfo instructorLogin(String email, String pass) throws ServiceException, ValidationException {
 		InstructorValidation.validateLogin(email, pass);
 		InstructorInfo instructorInfo = new InstructorInfo();
 		instructorInfo = instructorDAO.instructorLogin(email, pass);
 		if(instructorInfo == null)
-			throw new DbException(InfoMessages.INVALIDLOGIN);
+			throw new ServiceException(InfoMessages.INVALIDLOGIN);
 		else
 			return instructorInfo;
 	}

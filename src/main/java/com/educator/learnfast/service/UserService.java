@@ -6,6 +6,7 @@ import com.educator.learnfast.DAO.UserDAO;
 import com.educator.learnfast.DAO.implementation.UserDAOImplementation;
 import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.exception.InfoMessages;
+import com.educator.learnfast.exception.ServiceException;
 import com.educator.learnfast.exception.ValidationException;
 import com.educator.learnfast.models.CourseHistory;
 import com.educator.learnfast.models.UserInfo;
@@ -17,12 +18,12 @@ public class UserService {
 	private UserDAO userDAO = new UserDAOImplementation();
 	Logger logger = Logger.getInstance();
 
-	public UserInfo userLogin(String email, String password) throws Exception {
+	public UserInfo userLogin(String email, String password) throws ServiceException, ValidationException {
 		UserInfo ui = new UserInfo();
 		UserValidator.validateLogin(email, password);
 		ui = userDAO.userLogin(email, password);
 		if(ui == null) {
-			throw new DbException(InfoMessages.INVALIDLOGIN);
+			throw new ServiceException(InfoMessages.INVALIDLOGIN);
 		}
 		else
 			return ui;
