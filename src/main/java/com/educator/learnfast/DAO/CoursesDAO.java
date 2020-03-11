@@ -2,12 +2,12 @@ package com.educator.learnfast.dao;
 
 import java.util.ArrayList;
 
-import com.educator.learnfast.exception.DbException;
+import com.educator.learnfast.Exception.DbException;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 
 public interface CoursesDAO {
-	int getNoOfEnrollment(int courseId) throws DbException;
+	int getNoOfEnrollment(int courseId);
 
 	boolean saveCourse(CourseInfo course);
 

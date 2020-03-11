@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.educator.learnfast.Exception.DbException;
 import com.educator.learnfast.dao.implemenation.CoursesDAOImplementation;
-import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 import com.educator.learnfast.service.CoursesService;
@@ -52,7 +52,7 @@ public class CoursesDAOImplementationTest {
 
 	@Test
 	@Ignore
-	public void testDisplayCourses() throws DbException {
+	public void testDisplayCourses() throws Exception {
 		CourseInfo argu = new CourseInfo();
 		CoursesDAOImplementation check = new CoursesDAOImplementation();
 		String category = "Arts";

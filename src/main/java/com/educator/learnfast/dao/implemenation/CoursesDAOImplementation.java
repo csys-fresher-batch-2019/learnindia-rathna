@@ -6,8 +6,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.educator.learnfast.dao.CoursesDAO;
-import com.educator.learnfast.exception.DbException;
-import com.educator.learnfast.exception.InfoMessages;
 import com.educator.learnfast.mapper.ContentInfoRowMapper;
 import com.educator.learnfast.mapper.CourseInfoRowMapper;
 import com.educator.learnfast.models.ContentInfo;
