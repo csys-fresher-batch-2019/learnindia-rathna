@@ -6,6 +6,7 @@ import com.educator.learnfast.DAO.UserDAO;
 import com.educator.learnfast.DAO.implementation.UserDAOImplementation;
 import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.exception.InfoMessages;
+import com.educator.learnfast.exception.ValidationException;
 import com.educator.learnfast.models.CourseHistory;
 import com.educator.learnfast.models.UserInfo;
 import com.educator.learnfast.util.Logger;
@@ -27,7 +28,7 @@ public class UserService {
 			return ui;
 	}
 
-	public boolean saveUser(UserInfo user) throws Exception {
+	public boolean saveUser(UserInfo user) throws ValidationException {
 		UserValidator.validateRegister(user);
 		boolean val = userDAO.saveUser(user);
 		return val;
