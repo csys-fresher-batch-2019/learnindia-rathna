@@ -64,7 +64,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 			sb1.append("where course_category = '" + course.getCourseCategory() + "' and instructor_name like '%"
 					+ course.getInstructorName() + "%'");
 		String sql = sb1.toString();
-		ArrayList<CourseInfo> out = new ArrayList<CourseInfo>();
+		ArrayList<CourseInfo> out = new ArrayList<>();
 		CourseInfoRowMapper rowMapper = new CourseInfoRowMapper();
 		out = (ArrayList<CourseInfo>) jdbcTemplate.query(sql, rowMapper);
 		return out;
@@ -81,7 +81,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 
 	public ArrayList<ContentInfo> getCourseContent(int courseId) {
 		String sql = "select course_content,chapter_no from content_info where course_id = ?";
-		ArrayList<ContentInfo> list = new ArrayList<ContentInfo>();
+		ArrayList<ContentInfo> list = new ArrayList<>();
 		ContentInfoRowMapper rowMapper = new ContentInfoRowMapper();
 		list = (ArrayList<ContentInfo>) jdbcTemplate.query(sql, rowMapper, courseId);
 		return list;

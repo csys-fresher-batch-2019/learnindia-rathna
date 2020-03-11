@@ -71,7 +71,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testCourseRating() throws Exception {
 		int courseId = 20202;
 		int userId = 64;
@@ -82,10 +82,9 @@ public class CoursesDAOImplementationTest {
 	}
 
 	@Test
-	@Ignore
 	public void testFetchCourseContent() throws Exception {
 		ArrayList<ContentInfo> expected = new ArrayList<>();
-		int courseId = 20204;
+		int courseId = 20;
 		ContentInfo c1 = new ContentInfo();
 		c1.setChapterNo(1);
 		c1.setCourseContent("Setting the Scene for Conversation");

@@ -62,7 +62,7 @@ public class UserDAOImplementation implements UserDAO {
 					+ "from course_info c,enrollment_info e where c.course_id = e.course_id and e.user_id = ?";
 			break;
 		}
-		ArrayList<CourseHistory> chrs = new ArrayList<CourseHistory>();
+		ArrayList<CourseHistory> chrs = new ArrayList<>();
 		CourseHistoryRowMapper rowMapper = new CourseHistoryRowMapper();
 		chrs = (ArrayList<CourseHistory>) jdbcTemplate.query(sql, rowMapper, userId);
 		logger.info(chrs);

@@ -2,6 +2,12 @@ package com.educator.learnfast.models;
 
 public class ContentInfo {
 	@Override
+	public String toString() {
+		return "ContentInfo [courseId=" + courseId + ", courseContent=" + courseContent + ", chapterNo=" + chapterNo
+				+ "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
