@@ -2,24 +2,24 @@ package com.educator.learnfast.DAO;
 
 import java.util.ArrayList;
 
-import com.educator.learnfast.Exception.DbException;
+import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 
 public interface CoursesDAO {
-	int getNoOfEnrollment(int courseId);
+	int getNoOfEnrollment(int courseId) throws DbException;
 
 	boolean saveCourse(CourseInfo course);
 
-	boolean removeCourse(int courseId);
+	boolean deleteCourse(int courseId);
 
-	ArrayList<CourseInfo> displayCourses(CourseInfo course);
+	ArrayList<CourseInfo> findCourses(CourseInfo course);
 
-	boolean addCourseRating(int rating, int courseId, int userId);
+	boolean saveCourseRating(int rating, int courseId, int userId);
 
-	ArrayList<ContentInfo> fetchCourseContent(int courseId);
+	ArrayList<ContentInfo> getCourseContent(int courseId);
 
-	boolean saveContent(ContentInfo ci);
+	boolean saveCourseContent(ContentInfo ci);
 
-	boolean deleteContent(int courseId, int chapterNo);
+	boolean deleteCourseContent(int courseId, int chapterNo);
 }

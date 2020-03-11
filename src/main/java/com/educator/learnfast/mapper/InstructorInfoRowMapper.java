@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.educator.learnfast.models.InstructorInfo;
 
 public class InstructorInfoRowMapper implements RowMapper<InstructorInfo> {
-	
+
 	public InstructorInfo mapRow(ResultSet rs, int row) throws SQLException {
 		InstructorInfo insInfo = new InstructorInfo();
 		insInfo.setInstructorId(rs.getInt("instructor_id"));

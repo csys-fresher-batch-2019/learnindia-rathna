@@ -1,8 +1,8 @@
-package com.educator.learnfast.Exception;
+package com.educator.learnfast.exception;
 
-public class DbException extends Exception{
-	
-	public DbException (String msg) {
+public class DbException extends Exception {
+
+	public DbException(String msg) {
 		super(msg);
 	}
 

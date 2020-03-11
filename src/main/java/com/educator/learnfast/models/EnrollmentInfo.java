@@ -1,6 +1,5 @@
 package com.educator.learnfast.models;
 
-
 import java.time.LocalDate;
 
 public class EnrollmentInfo {
@@ -9,36 +8,46 @@ public class EnrollmentInfo {
 		return "EnrollmentInfo [enrollmentId=" + enrollmentId + ", courseId=" + courseId + ", userId=" + userId
 				+ ", enrolledDate=" + enrolledDate + ", endingDate=" + endingDate + ", status=" + status + "]";
 	}
+
 	private int enrollmentId;
 	private int courseId;
 	private int userId;
 	private LocalDate enrolledDate;
 	private LocalDate endingDate;
 	private EnrollmentStatusEnum status;
+
 	public int getEnrollmentId() {
 		return enrollmentId;
 	}
+
 	public void setEnrollmentId(int enrollmentId) {
 		this.enrollmentId = enrollmentId;
 	}
+
 	public int getCourseId() {
 		return courseId;
 	}
+
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public LocalDate getEnrolledDate() {
 		return enrolledDate;
 	}
+
 	public void setEnrolledDate(LocalDate enrolledDate) {
 		this.enrolledDate = enrolledDate;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -51,6 +60,7 @@ public class EnrollmentInfo {
 		result = prime * result + userId;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -80,20 +90,24 @@ public class EnrollmentInfo {
 			return false;
 		return true;
 	}
+
 	public LocalDate getEndingDate() {
 		return endingDate;
 	}
+
 	public void setEndingDate(LocalDate endingDate) {
 		this.endingDate = endingDate;
 	}
+
 	public EnrollmentStatusEnum getStatus() {
 		return status;
 	}
+
 	public void setStatus(EnrollmentStatusEnum status) {
 		this.status = status;
 	}
-	
-	/* EnrollmentInfo() {
-		// TODO Auto-generated constructor stub
-	}*/
+
+	/*
+	 * EnrollmentInfo() { // TODO Auto-generated constructor stub }
+	 */
 }

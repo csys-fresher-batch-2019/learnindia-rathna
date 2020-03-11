@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.educator.learnfast.models.UserInfo;
 
-public class UserInfoRowMapper implements RowMapper<UserInfo>{
+public class UserInfoRowMapper implements RowMapper<UserInfo> {
 
 	public UserInfo mapRow(ResultSet rs, int row) throws SQLException {
 		UserInfo ui = new UserInfo();

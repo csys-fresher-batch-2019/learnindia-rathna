@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.educator.learnfast.models.CourseHistory;
 
 public class CourseHistoryRowMapper implements RowMapper<CourseHistory> {
-	
+
 	public CourseHistory mapRow(ResultSet rs, int row) throws SQLException {
 		CourseHistory ch = new CourseHistory();
 		ch.setCourseName(rs.getString("course_name"));

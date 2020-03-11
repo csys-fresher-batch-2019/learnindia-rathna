@@ -1,4 +1,4 @@
-package com.educator.learnfast.test;
+package com.educator.LearnFast.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,8 +13,9 @@ import com.educator.learnfast.service.InstructorService;
 public class InstructorDAOImplementationTest {
 
 	InstructorService check = new InstructorService();
-	
-	@Test @Ignore
+
+	@Test
+	@Ignore
 	public void testAddInstructor() throws Exception {
 		boolean expected = true;
 		InstructorInfo arg = new InstructorInfo();
@@ -23,10 +24,10 @@ public class InstructorDAOImplementationTest {
 		arg.setInstructorPassword("vimal12345");
 		arg.setAreaOfInterest("Power Electronics");
 		boolean actual = check.saveInstructor(arg);
-		assertEquals(expected,actual);
+		assertEquals(expected, actual);
 	}
-	
-	@Test 
+
+	@Test
 	public void testInstructorLogin() throws Exception {
 		InstructorInfo expected = new InstructorInfo();
 		String email = "gokul@gmail.com";
@@ -38,16 +39,16 @@ public class InstructorDAOImplementationTest {
 		expected.setAreaOfInterest("Power Electroincs");
 		InstructorInfo actual = new InstructorInfo();
 		actual = check.instructorLogin(email, pass);
-		assertEquals(expected,actual);
+		assertEquals(expected, actual);
 	}
-	
-	
-	@Test @Ignore
+
+	@Test
+	@Ignore
 	public void getEmail() throws Exception {
 		String email = "robert@gmail.com";
 		boolean expected = true;
 		InstructorDAO instructorDAO = new InstructorDAOImplementation();
-		boolean actual = instructorDAO.getEmail(email);
+		boolean actual = instructorDAO.getInstructorEmail(email);
 		assertEquals(expected, actual);
 	}
 

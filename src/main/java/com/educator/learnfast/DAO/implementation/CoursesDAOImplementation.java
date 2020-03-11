@@ -1,25 +1,19 @@
 package com.educator.learnfast.DAO.implementation;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.educator.learnfast.DAO.CoursesDAO;
-import com.educator.learnfast.Exception.DbException;
-import com.educator.learnfast.Exception.InfoMessages;
+import com.educator.learnfast.exception.DbException;
+import com.educator.learnfast.exception.InfoMessages;
 import com.educator.learnfast.mapper.ContentInfoRowMapper;
 import com.educator.learnfast.mapper.CourseInfoRowMapper;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 import com.educator.learnfast.util.ConnectionUtil;
 import com.educator.learnfast.util.Logger;
-import com.educator.learnfast.util.TestConnection;
 
 public class CoursesDAOImplementation implements CoursesDAO {
 
@@ -38,7 +32,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 			return false;
 	}
 
-	public boolean removeCourse(int courseId) {
+	public boolean deleteCourse(int courseId) {
 		String sql = "delete course_info where course_id = ?";
 		int row = jdbcTemplate.update(sql, courseId);
 		if (row == 1)
@@ -48,12 +42,13 @@ public class CoursesDAOImplementation implements CoursesDAO {
 	}
 
 	public int getNoOfEnrollment(int courseId) {
+		int count = 0;
 		String sql = "select count(enrollment_id) from enrollment_info where status='ONGOING' and course_id=?";
-		int count = jdbcTemplate.queryForObject(sql, Integer.class, courseId);
+		count = jdbcTemplate.queryForObject(sql, Integer.class, courseId);
 		return count;
 	}
 
-	public ArrayList<CourseInfo> displayCourses(CourseInfo course) {
+	public ArrayList<CourseInfo> findCourses(CourseInfo course) {
 		StringBuilder sb1 = new StringBuilder("select *from course_info ");
 		if (course.getCourseName().length() != 0) {
 			sb1.append("where course_name like '%" + course.getCourseName() + "%'");
@@ -75,7 +70,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 		return out;
 	}
 
-	public boolean addCourseRating(int rating, int courseId, int userId) {
+	public boolean saveCourseRating(int rating, int courseId, int userId) {
 		String sql = "update course_info set rating = (select avg(rating) from enrollment_info where course_id = ?) where course_id = ?";
 		int row = jdbcTemplate.update(sql, courseId, courseId);
 		if (row == 1)
@@ -84,7 +79,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 			return false;
 	}
 
-	public ArrayList<ContentInfo> fetchCourseContent(int courseId) {
+	public ArrayList<ContentInfo> getCourseContent(int courseId) {
 		String sql = "select course_content,chapter_no from content_info where course_id = ?";
 		ArrayList<ContentInfo> list = new ArrayList<ContentInfo>();
 		ContentInfoRowMapper rowMapper = new ContentInfoRowMapper();
@@ -92,7 +87,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 		return list;
 	}
 
-	public boolean saveContent(ContentInfo ci) {
+	public boolean saveCourseContent(ContentInfo ci) {
 		String sql = "insert into content_info(course_id,course_content,chapter_no) values(?,?,?)";
 		int row = jdbcTemplate.update(sql, ci.getCourseId(), ci.getCourseContent(), ci.getChapterNo());
 		if (row == 1)
@@ -101,7 +96,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 			return false;
 	}
 
-	public boolean deleteContent(int courseId, int chapterNo) {
+	public boolean deleteCourseContent(int courseId, int chapterNo) {
 		String sql = "delete content_info where course_id = ? and chapter_no = ?";
 		int row = jdbcTemplate.update(sql, courseId, chapterNo);
 		if (row == 1)

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.educator.learnfast.DAO.UserDAO;
 import com.educator.learnfast.DAO.implementation.UserDAOImplementation;
+import com.educator.learnfast.exception.DbException;
+import com.educator.learnfast.exception.InfoMessages;
 import com.educator.learnfast.models.CourseHistory;
 import com.educator.learnfast.models.UserInfo;
 import com.educator.learnfast.util.Logger;
@@ -14,16 +16,20 @@ public class UserService {
 	private UserDAO userDAO = new UserDAOImplementation();
 	Logger logger = Logger.getInstance();
 
-	public UserInfo UserLogin(String email, String password) throws Exception {
+	public UserInfo userLogin(String email, String password) throws Exception {
 		UserInfo ui = new UserInfo();
 		UserValidator.validateLogin(email, password);
-		ui = userDAO.UserLogin(email, password);
-		return ui;
+		ui = userDAO.userLogin(email, password);
+		if(ui == null) {
+			throw new DbException(InfoMessages.INVALIDLOGIN);
+		}
+		else
+			return ui;
 	}
 
-	public boolean addUser(UserInfo user) throws Exception {
+	public boolean saveUser(UserInfo user) throws Exception {
 		UserValidator.validateRegister(user);
-		boolean val = userDAO.addUser(user);
+		boolean val = userDAO.saveUser(user);
 		return val;
 	}
 
@@ -34,7 +40,7 @@ public class UserService {
 	}
 
 	public boolean deleteUser(int userId) {
-		int count = userDAO.count(userId);
+		int count = userDAO.countNoOfEnrollment(userId);
 		boolean val = false;
 		if (count == 0) {
 			val = userDAO.deleteUser(userId);
@@ -43,8 +49,8 @@ public class UserService {
 		return val;
 	}
 
-	public boolean getEmail(String email) {
-		boolean val = userDAO.getEmail(email);
+	public boolean findByUserEmail(String email) {
+		boolean val = userDAO.findByUserEmail(email);
 		return val;
 	}
 

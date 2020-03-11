@@ -2,15 +2,13 @@ package com.educator.learnfast.service;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.educator.learnfast.DAO.CoursesDAO;
 import com.educator.learnfast.DAO.EnrollmentDAO;
 import com.educator.learnfast.DAO.implementation.CoursesDAOImplementation;
 import com.educator.learnfast.DAO.implementation.EnrollmentDAOImplementation;
+import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
-import com.educator.learnfast.util.TestConnection;
 
 public class CoursesService {
 	private CoursesDAO coursesDAO = new CoursesDAOImplementation();
@@ -21,37 +19,37 @@ public class CoursesService {
 		return val;
 	}
 
-	public int getNoOfEnrollment(int courseId) {
+	public int getNoOfEnrollment(int courseId) throws DbException {
 		int val = coursesDAO.getNoOfEnrollment(courseId);
 		return val;
 	}
 
-	public boolean removeCourse(int courseId) {
-		boolean val = coursesDAO.removeCourse(courseId);
+	public boolean deleteCourse(int courseId) {
+		boolean val = coursesDAO.deleteCourse(courseId);
 		return val;
 	}
 
-	public ArrayList<ContentInfo> fetchCourseContent(int courseId) {
+	public ArrayList<ContentInfo> getCourseContent(int courseId) {
 		ArrayList<ContentInfo> list = new ArrayList<>();
-		list = coursesDAO.fetchCourseContent(courseId);
+		list = coursesDAO.getCourseContent(courseId);
 		return list;
 	}
 
-	public boolean addCourseRating(int rating, int courseId, int userId) {
+	public boolean saveCourseRating(int rating, int courseId, int userId) {
 		boolean result = false;
 		boolean val = enrollmentDAO.saveEnrollmentRating(courseId, userId, rating);
-		if (val == true)
-			result = coursesDAO.addCourseRating(rating, courseId, userId);
+		if (val)
+			result = coursesDAO.saveCourseRating(rating, courseId, userId);
 		return result;
 	}
 
-	public boolean saveContent(ContentInfo ci) {
-		boolean result = coursesDAO.saveContent(ci);
+	public boolean saveCourseContent(ContentInfo ci) {
+		boolean result = coursesDAO.saveCourseContent(ci);
 		return result;
 	}
 
-	public boolean deleteContent(int courseId, int chapterNo) {
-		boolean result = coursesDAO.deleteContent(courseId, chapterNo);
+	public boolean deleteCourseContent(int courseId, int chapterNo) {
+		boolean result = coursesDAO.deleteCourseContent(courseId, chapterNo);
 		return result;
 	}
 }

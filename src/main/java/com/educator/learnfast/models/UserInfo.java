@@ -12,6 +12,7 @@ public class UserInfo {
 		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -42,38 +43,55 @@ public class UserInfo {
 			return false;
 		return true;
 	}
+
 	int userId;
 	private String userName;
 	private String emailId;
 	private String userPassword;
 	private int noOfCoursesEnrolled;
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
+	@Override
+	public String toString() {
+		return "UserInfo [userId=" + userId + ", userName=" + userName + ", emailId=" + emailId + ", userPassword="
+				+ userPassword + ", noOfCoursesEnrolled=" + noOfCoursesEnrolled + "]";
+	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getEmailId() {
 		return emailId;
 	}
+
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
+
 	public String getUserPassword() {
 		return userPassword;
 	}
+
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+
 	public int getNoOfCoursesEnrolled() {
 		return noOfCoursesEnrolled;
 	}
+
 	public void setNoOfCoursesEnrolled(int noOfCoursesEnrolled) {
 		this.noOfCoursesEnrolled = noOfCoursesEnrolled;
 	}

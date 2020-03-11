@@ -12,12 +12,14 @@ public class InstructorInfo {
 		result = prime * result + ((instructorPassword == null) ? 0 : instructorPassword.hashCode());
 		return result;
 	}
+
 	@Override
 	public String toString() {
 		return "InstructorInfo [instructorId=" + instructorId + ", instructorName=" + instructorName
 				+ ", instructorEmail=" + instructorEmail + ", instructorPassword=" + instructorPassword
 				+ ", areaOfInterest=" + areaOfInterest + "]";
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -51,38 +53,49 @@ public class InstructorInfo {
 			return false;
 		return true;
 	}
+
 	private int instructorId;
 	private String instructorName;
 	private String instructorEmail;
 	private String instructorPassword;
 	private String areaOfInterest;
+
 	public int getInstructorId() {
 		return instructorId;
 	}
+
 	public void setInstructorId(int instructorId) {
 		this.instructorId = instructorId;
 	}
+
 	public String getInstructorName() {
 		return instructorName;
 	}
+
 	public void setInstructorName(String instructorName) {
 		this.instructorName = instructorName;
 	}
+
 	public String getInstructorEmail() {
 		return instructorEmail;
 	}
+
 	public void setInstructorEmail(String instructorEmail) {
 		this.instructorEmail = instructorEmail;
 	}
+
 	public String getInstructorPassword() {
 		return instructorPassword;
 	}
+
 	public void setInstructorPassword(String instructorPassword) {
 		this.instructorPassword = instructorPassword;
 	}
+
 	public String getAreaOfInterest() {
 		return areaOfInterest;
 	}
+
 	public void setAreaOfInterest(String areaOfInterest) {
 		this.areaOfInterest = areaOfInterest;
 	}

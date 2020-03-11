@@ -7,8 +7,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.educator.learnfast.models.CourseInfo;
 
-public class CourseInfoRowMapper implements RowMapper<CourseInfo>{
-	
+public class CourseInfoRowMapper implements RowMapper<CourseInfo> {
+
 	public CourseInfo mapRow(ResultSet rs, int row) throws SQLException {
 		CourseInfo ci = new CourseInfo();
 		ci.setCourseId(rs.getInt("course_id"));

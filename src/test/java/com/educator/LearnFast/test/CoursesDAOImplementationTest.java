@@ -1,4 +1,4 @@
-package com.educator.learnfast.test;
+package com.educator.LearnFast.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,16 +8,15 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.educator.learnfast.DAO.implementation.CoursesDAOImplementation;
-import com.educator.learnfast.Exception.DbException;
+import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 import com.educator.learnfast.service.CoursesService;
 
+public class CoursesDAOImplementationTest {
 
-public class CoursesDAOImplementationTest  {
-	
 	CoursesService met = new CoursesService();
-	
+
 	@Ignore
 	@Test
 	public void testSaveCourse() throws Exception {
@@ -30,33 +29,35 @@ public class CoursesDAOImplementationTest  {
 		obj.setPrice(0);
 		boolean expected = true;
 		boolean actual = met.saveCourse(obj);
-		assertEquals(expected,actual);
+		assertEquals(expected, actual);
 	}
-	
-	@Test @Ignore
+
+	@Test
+	@Ignore
 	public void testRemoveCourse() throws Exception {
-		int courseId  = 20211;
+		int courseId = 20211;
 		boolean expected = true;
-		boolean actual = met.removeCourse(courseId);
-		assertEquals(expected,actual);
-	}
-	
-	@Test @Ignore
-	public void testgetNoOfEnrollment() throws Exception {
-		int courseId = 20202;
-		int expected = 5;
-		CoursesDAOImplementation course = new CoursesDAOImplementation();
-		int actual = course.getNoOfEnrollment(courseId);
-		assertEquals(expected,actual);
+		boolean actual = met.deleteCourse(courseId);
+		assertEquals(expected, actual);
 	}
 
 	@Test @Ignore
+	public void testgetNoOfEnrollment() throws Exception {
+		int courseId = 20;
+		int expected = 5;
+		CoursesDAOImplementation course = new CoursesDAOImplementation();
+		int actual = course.getNoOfEnrollment(courseId);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	@Ignore
 	public void testDisplayCourses() throws DbException {
 		CourseInfo argu = new CourseInfo();
 		CoursesDAOImplementation check = new CoursesDAOImplementation();
 		String category = "Arts";
 		argu.setCourseCategory(category);
-		ArrayList<CourseInfo> expected = new ArrayList();
+		ArrayList<CourseInfo> expected = new ArrayList<>();
 		CourseInfo alist = new CourseInfo();
 		alist.setCourseId(20203);
 		alist.setCourseName("MusicTheory");
@@ -65,22 +66,23 @@ public class CoursesDAOImplementationTest  {
 		alist.setCourseCategory("Arts");
 		alist.setPrice(2000);
 		expected.add(alist);
-		ArrayList<CourseInfo> actual = new ArrayList();
-		actual = check.displayCourses(argu);
-		assertEquals(expected,actual);
+		ArrayList<CourseInfo> actual = new ArrayList<>();
+		actual = check.findCourses(argu);
+		assertEquals(expected, actual);
 	}
-	
-	@Test @Ignore
+
+	@Test
 	public void testCourseRating() throws Exception {
 		int courseId = 20202;
 		int userId = 64;
 		int rating = 3;
 		boolean expected = true;
-		boolean actual = met.addCourseRating(rating, courseId, userId);
-		assertEquals(expected,actual);
+		boolean actual = met.saveCourseRating(rating, courseId, userId);
+		assertEquals(expected, actual);
 	}
-	
-	@Test @Ignore
+
+	@Test
+	@Ignore
 	public void testFetchCourseContent() throws Exception {
 		ArrayList<ContentInfo> expected = new ArrayList<>();
 		int courseId = 20204;
@@ -101,28 +103,30 @@ public class CoursesDAOImplementationTest  {
 		expected.add(c3);
 		expected.add(c4);
 		ArrayList<ContentInfo> actual = new ArrayList<>();
-		actual = met.fetchCourseContent(courseId);
-		assertEquals(expected,actual);
+		actual = met.getCourseContent(courseId);
+		assertEquals(expected, actual);
 	}
-	
-	@Test @Ignore
+
+	@Test
+	@Ignore
 	public void saveContent() {
 		ContentInfo contentInfo = new ContentInfo();
 		contentInfo.setChapterNo(5);
 		contentInfo.setCourseId(20205);
 		contentInfo.setCourseContent("Improve Your Communication Skills");
 		boolean expected = true;
-		boolean actual = met.saveContent(contentInfo);
+		boolean actual = met.saveCourseContent(contentInfo);
 		assertEquals(expected, actual);
 	}
-	
-	@Test @Ignore
+
+	@Test
+	@Ignore
 	public void deleteContent() {
 		int courseId = 20205;
 		int chapterNo = 5;
 		boolean expected = true;
-		boolean actual = met.deleteContent(courseId, chapterNo);
+		boolean actual = met.deleteCourseContent(courseId, chapterNo);
 		assertEquals(expected, actual);
 	}
-	
+
 }

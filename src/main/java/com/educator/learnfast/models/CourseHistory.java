@@ -16,6 +16,7 @@ public class CourseHistory {
 		result = prime * result + (status ? 1231 : 1237);
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -53,12 +54,14 @@ public class CourseHistory {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "CourseHistory [courseName=" + courseName + ", courseId=" + courseId + ", instructorName="
 				+ instructorName + ", enrolledDate=" + enrolledDate + ", endingDate=" + endingDate + ", status="
 				+ status + ", enrollmentId=" + enrollmentId + "]";
 	}
+
 	private String courseName;
 	private int courseId;
 	private String instructorName;
@@ -66,46 +69,59 @@ public class CourseHistory {
 	private LocalDate endingDate;
 	private boolean status;
 	private int enrollmentId;
-	
+
 	public LocalDate getEnrolledDate() {
 		return enrolledDate;
 	}
+
 	public void setEnrolledDate(LocalDate enrolledDate) {
 		this.enrolledDate = enrolledDate;
 	}
+
 	public LocalDate getEndingDate() {
 		return endingDate;
 	}
+
 	public void setEndingDate(LocalDate endingDate) {
 		this.endingDate = endingDate;
 	}
+
 	public int getEnrollmentId() {
 		return enrollmentId;
 	}
+
 	public void setEnrollmentId(int enrollmentId) {
 		this.enrollmentId = enrollmentId;
 	}
+
 	public String getCourseName() {
 		return courseName;
 	}
+
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
+
 	public int getCourseId() {
 		return courseId;
 	}
+
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+
 	public String getInstructorName() {
 		return instructorName;
 	}
+
 	public void setInstructorName(String instructorName) {
 		this.instructorName = instructorName;
 	}
+
 	public boolean isStatus() {
 		return status;
 	}
+
 	public void setStatus(boolean status) {
 		this.status = status;
 	}

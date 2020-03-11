@@ -1,7 +1,5 @@
 package com.educator.learnfast.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.educator.learnfast.DAO.EnrollmentDAO;
 import com.educator.learnfast.DAO.UserDAO;
 import com.educator.learnfast.DAO.implementation.EnrollmentDAOImplementation;
@@ -16,9 +14,9 @@ public class EnrollmentService {
 		return val;
 	}
 
-	public boolean removeEnrollment(int CourseId, int UserId) {
+	public boolean deleteEnrollment(int CourseId, int UserId) {
 		boolean result = false;
-		boolean val = enrollmentDAO.removeEnrollment(CourseId, UserId);
+		boolean val = enrollmentDAO.deleteEnrollment(CourseId, UserId);
 		if (val == true)
 			result = userDAO.updateNoOfCoursesEnrolled(UserId);
 		return result;
