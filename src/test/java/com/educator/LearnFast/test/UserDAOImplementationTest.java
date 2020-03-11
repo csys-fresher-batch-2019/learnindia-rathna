@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.educator.learnfast.DAO.implementation.UserDAOImplementation;
+import com.educator.learnfast.dao.implemenation.UserDAOImplementation;
 import com.educator.learnfast.models.CourseHistory;
 import com.educator.learnfast.models.UserInfo;
 import com.educator.learnfast.service.UserService;

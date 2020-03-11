@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.educator.learnfast.DAO.InstructorDAO;
-import com.educator.learnfast.DAO.implementation.InstructorDAOImplementation;
+import com.educator.learnfast.dao.InstructorDAO;
+import com.educator.learnfast.dao.implemenation.InstructorDAOImplementation;
 import com.educator.learnfast.models.InstructorInfo;
 import com.educator.learnfast.service.InstructorService;
 

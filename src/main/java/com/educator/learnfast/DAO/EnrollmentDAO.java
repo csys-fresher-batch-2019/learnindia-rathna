@@ -1,4 +1,4 @@
-package com.educator.learnfast.DAO;
+package com.educator.learnfast.dao;
 
 public interface EnrollmentDAO {
 

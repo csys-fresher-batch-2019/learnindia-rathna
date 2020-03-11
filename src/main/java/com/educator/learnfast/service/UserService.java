@@ -2,9 +2,8 @@ package com.educator.learnfast.service;
 
 import java.util.ArrayList;
 
-import com.educator.learnfast.DAO.UserDAO;
-import com.educator.learnfast.DAO.implementation.UserDAOImplementation;
-import com.educator.learnfast.exception.DbException;
+import com.educator.learnfast.dao.UserDAO;
+import com.educator.learnfast.dao.implemenation.UserDAOImplementation;
 import com.educator.learnfast.exception.InfoMessages;
 import com.educator.learnfast.exception.ServiceException;
 import com.educator.learnfast.exception.ValidationException;

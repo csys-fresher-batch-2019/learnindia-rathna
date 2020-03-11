@@ -1,4 +1,4 @@
-package com.educator.learnfast.DAO;
+package com.educator.learnfast.dao;
 
 import com.educator.learnfast.models.InstructorInfo;
 

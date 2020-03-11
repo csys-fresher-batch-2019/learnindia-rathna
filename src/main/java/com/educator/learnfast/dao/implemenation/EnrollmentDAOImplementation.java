@@ -1,4 +1,4 @@
-package com.educator.learnfast.DAO.implementation;
+package com.educator.learnfast.dao.implemenation;
 
 import java.sql.Types;
 
@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.educator.learnfast.DAO.EnrollmentDAO;
+import com.educator.learnfast.dao.EnrollmentDAO;
 import com.educator.learnfast.util.ConnectionUtil;
 import com.educator.learnfast.util.Logger;
 

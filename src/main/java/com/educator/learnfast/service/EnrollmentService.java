@@ -1,9 +1,9 @@
 package com.educator.learnfast.service;
 
-import com.educator.learnfast.DAO.EnrollmentDAO;
-import com.educator.learnfast.DAO.UserDAO;
-import com.educator.learnfast.DAO.implementation.EnrollmentDAOImplementation;
-import com.educator.learnfast.DAO.implementation.UserDAOImplementation;
+import com.educator.learnfast.dao.EnrollmentDAO;
+import com.educator.learnfast.dao.UserDAO;
+import com.educator.learnfast.dao.implemenation.EnrollmentDAOImplementation;
+import com.educator.learnfast.dao.implemenation.UserDAOImplementation;
 
 public class EnrollmentService {
 	private EnrollmentDAO enrollmentDAO = new EnrollmentDAOImplementation();

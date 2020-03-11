@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.educator.learnfast.DAO.implementation.CoursesDAOImplementation;
+import com.educator.learnfast.dao.implemenation.CoursesDAOImplementation;
 import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;

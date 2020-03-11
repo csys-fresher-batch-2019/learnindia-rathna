@@ -1,11 +1,11 @@
-package com.educator.learnfast.DAO.implementation;
+package com.educator.learnfast.dao.implemenation;
 
 import java.util.ArrayList;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.educator.learnfast.DAO.CoursesDAO;
+import com.educator.learnfast.dao.CoursesDAO;
 import com.educator.learnfast.exception.DbException;
 import com.educator.learnfast.exception.InfoMessages;
 import com.educator.learnfast.mapper.ContentInfoRowMapper;
