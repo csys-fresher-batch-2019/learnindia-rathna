@@ -51,7 +51,6 @@ public class CoursesDAOImplementationTest {
 	}
 
 	@Test
-	@Ignore
 	public void testDisplayCourses() throws Exception {
 		CourseInfo argu = new CourseInfo();
 		CoursesDAOImplementation check = new CoursesDAOImplementation();
@@ -81,7 +80,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testFetchCourseContent() throws Exception {
 		ArrayList<ContentInfo> expected = new ArrayList<>();
 		int courseId = 20;

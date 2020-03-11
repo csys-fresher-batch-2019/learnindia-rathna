@@ -2,7 +2,6 @@ package com.educator.learnfast.dao;
 
 import java.util.ArrayList;
 
-import com.educator.learnfast.Exception.DbException;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 

@@ -2,7 +2,6 @@ package com.educator.learnfast.service;
 
 import java.util.ArrayList;
 
-import com.educator.learnfast.Exception.DbException;
 import com.educator.learnfast.dao.CoursesDAO;
 import com.educator.learnfast.dao.EnrollmentDAO;
 import com.educator.learnfast.dao.implemenation.CoursesDAOImplementation;
@@ -11,15 +10,17 @@ import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 
 public class CoursesService {
+	
 	private CoursesDAO coursesDAO = new CoursesDAOImplementation();
 	private EnrollmentDAO enrollmentDAO = new EnrollmentDAOImplementation();
+	
 
 	public boolean saveCourse(CourseInfo course) {
 		boolean val = coursesDAO.saveCourse(course);
 		return val;
 	}
 
-	public int getNoOfEnrollment(int courseId) throws DbException  {
+	public int getNoOfEnrollment(int courseId) {
 		int val = coursesDAO.getNoOfEnrollment(courseId);
 		return val;
 	}
