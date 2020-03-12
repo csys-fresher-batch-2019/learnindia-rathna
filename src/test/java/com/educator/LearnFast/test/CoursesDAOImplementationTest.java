@@ -16,7 +16,7 @@ public class CoursesDAOImplementationTest {
 
 	CoursesService met = new CoursesService();
 
-	@Test
+	@Test @Ignore
 	public void testSaveCourse() throws Exception {
 		CourseInfo obj = new CourseInfo();
 		obj.setCourseName("Algebra2");
@@ -30,7 +30,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testRemoveCourse() throws Exception {
 		int courseId = 20208;
 		boolean expected = true;
@@ -38,7 +38,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testgetNoOfEnrollment() throws Exception {
 		int courseId = 20202;
 		int expected = 3;
@@ -47,7 +47,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testDisplayCourses() throws Exception {
 		CourseInfo argu = new CourseInfo();
 		CoursesDAOImplementation check = new CoursesDAOImplementation();
@@ -68,7 +68,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testCourseRating() throws Exception {
 		int courseId = 20202;
 		int userId = 53;
@@ -78,7 +78,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testFetchCourseContent() throws Exception {
 		ArrayList<ContentInfo> expected = new ArrayList<>();
 		int courseId = 20204;
@@ -103,7 +103,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void saveContent() {
 		ContentInfo contentInfo = new ContentInfo();
 		contentInfo.setChapterNo(8);
@@ -114,7 +114,7 @@ public class CoursesDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void deleteContent() {
 		int courseId = 20206;
 		int chapterNo = 8;

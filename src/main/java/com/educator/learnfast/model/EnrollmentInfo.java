@@ -2,7 +2,7 @@ package com.educator.learnfast.model;
 
 import java.time.LocalDate;
 
-import com.educator.learnfast.models.EnrollmentStatusEnum;
+import com.educator.learnfast.model.EnrollmentStatusEnum;
 
 public class EnrollmentInfo {
 	@Override
