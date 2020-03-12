@@ -1,4 +1,4 @@
-package com.educator.learnfast.models;
+package com.educator.learnfast.model;
 
 import java.time.LocalDate;
 

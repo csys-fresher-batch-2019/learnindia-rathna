@@ -1,6 +1,6 @@
 package com.educator.learnfast.dao;
 
-import com.educator.learnfast.models.InstructorInfo;
+import com.educator.learnfast.model.InstructorInfo;
 
 public interface InstructorDAO {
 

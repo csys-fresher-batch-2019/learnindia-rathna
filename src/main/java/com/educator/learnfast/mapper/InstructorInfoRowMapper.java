@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.educator.learnfast.models.InstructorInfo;
+import com.educator.learnfast.model.InstructorInfo;
 
 public class InstructorInfoRowMapper implements RowMapper<InstructorInfo> {
 

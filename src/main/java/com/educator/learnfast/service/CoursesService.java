@@ -6,8 +6,8 @@ import com.educator.learnfast.dao.CoursesDAO;
 import com.educator.learnfast.dao.EnrollmentDAO;
 import com.educator.learnfast.dao.implementation.CoursesDAOImplementation;
 import com.educator.learnfast.dao.implementation.EnrollmentDAOImplementation;
-import com.educator.learnfast.models.ContentInfo;
-import com.educator.learnfast.models.CourseInfo;
+import com.educator.learnfast.model.ContentInfo;
+import com.educator.learnfast.model.CourseInfo;
 
 public class CoursesService {
 

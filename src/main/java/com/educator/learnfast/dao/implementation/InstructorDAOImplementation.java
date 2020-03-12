@@ -6,7 +6,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.educator.learnfast.dao.InstructorDAO;
 import com.educator.learnfast.mapper.InstructorInfoRowMapper;
-import com.educator.learnfast.models.InstructorInfo;
+import com.educator.learnfast.model.InstructorInfo;
 import com.educator.learnfast.util.ConnectionUtil;
 import com.educator.learnfast.util.Logger;
 

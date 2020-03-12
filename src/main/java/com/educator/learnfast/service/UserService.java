@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import com.educator.learnfast.exception.InfoMessages;
 import com.educator.learnfast.exception.ValidationException;
+import com.educator.learnfast.model.CourseHistory;
+import com.educator.learnfast.model.EnrollmentStatusEnum;
+import com.educator.learnfast.model.UserInfo;
 import com.educator.learnfast.exception.ServiceException;
 import com.educator.learnfast.dao.UserDAO;
 import com.educator.learnfast.dao.implementation.UserDAOImplementation;
-import com.educator.learnfast.models.CourseHistory;
-import com.educator.learnfast.models.EnrollmentStatusEnum;
-import com.educator.learnfast.models.UserInfo;
 import com.educator.learnfast.util.Logger;
 import com.educator.learnfast.validation.UserValidator;
 

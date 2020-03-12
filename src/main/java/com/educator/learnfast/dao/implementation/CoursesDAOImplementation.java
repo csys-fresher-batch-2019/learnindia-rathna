@@ -8,8 +8,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.educator.learnfast.dao.CoursesDAO;
 import com.educator.learnfast.mapper.ContentInfoRowMapper;
 import com.educator.learnfast.mapper.CourseInfoRowMapper;
-import com.educator.learnfast.models.ContentInfo;
-import com.educator.learnfast.models.CourseInfo;
+import com.educator.learnfast.model.ContentInfo;
+import com.educator.learnfast.model.CourseInfo;
 import com.educator.learnfast.util.ConnectionUtil;
 import com.educator.learnfast.util.Logger;
 

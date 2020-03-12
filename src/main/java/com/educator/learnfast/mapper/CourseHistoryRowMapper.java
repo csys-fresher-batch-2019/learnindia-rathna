@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.educator.learnfast.models.CourseHistory;
+import com.educator.learnfast.model.CourseHistory;
 
 public class CourseHistoryRowMapper implements RowMapper<CourseHistory> {
 

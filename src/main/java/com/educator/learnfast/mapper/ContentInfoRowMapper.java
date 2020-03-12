@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.educator.learnfast.models.ContentInfo;
+import com.educator.learnfast.model.ContentInfo;
 
 public class ContentInfoRowMapper implements RowMapper<ContentInfo> {
 

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.educator.learnfast.dao.InstructorDAO;
 import com.educator.learnfast.dao.implementation.InstructorDAOImplementation;
-import com.educator.learnfast.models.InstructorInfo;
+import com.educator.learnfast.model.InstructorInfo;
 import com.educator.learnfast.service.InstructorService;
 
 public class InstructorDAOImplementationTest {

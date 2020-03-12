@@ -3,7 +3,7 @@ package com.educator.learnfast.validation;
 import com.educator.learnfast.dao.UserDAO;
 import com.educator.learnfast.dao.implementation.UserDAOImplementation;
 import com.educator.learnfast.exception.ValidationException;
-import com.educator.learnfast.models.UserInfo;
+import com.educator.learnfast.model.UserInfo;
 
 public class UserValidator {
 

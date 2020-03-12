@@ -2,9 +2,9 @@ package com.educator.learnfast.dao;
 
 import java.util.ArrayList;
 
-import com.educator.learnfast.models.CourseHistory;
-import com.educator.learnfast.models.EnrollmentStatusEnum;
-import com.educator.learnfast.models.UserInfo;
+import com.educator.learnfast.model.CourseHistory;
+import com.educator.learnfast.model.EnrollmentStatusEnum;
+import com.educator.learnfast.model.UserInfo;
 
 public interface UserDAO {
 	boolean saveUser(UserInfo user);

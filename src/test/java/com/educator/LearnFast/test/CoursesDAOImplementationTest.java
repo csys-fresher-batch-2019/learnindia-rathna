@@ -8,8 +8,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.educator.learnfast.dao.implementation.CoursesDAOImplementation;
-import com.educator.learnfast.models.ContentInfo;
-import com.educator.learnfast.models.CourseInfo;
+import com.educator.learnfast.model.ContentInfo;
+import com.educator.learnfast.model.CourseInfo;
 import com.educator.learnfast.service.CoursesService;
 
 public class CoursesDAOImplementationTest {
