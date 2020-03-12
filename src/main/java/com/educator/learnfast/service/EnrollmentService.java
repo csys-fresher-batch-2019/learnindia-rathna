@@ -2,10 +2,11 @@ package com.educator.learnfast.service;
 
 import com.educator.learnfast.dao.EnrollmentDAO;
 import com.educator.learnfast.dao.UserDAO;
-import com.educator.learnfast.dao.implemenation.EnrollmentDAOImplementation;
-import com.educator.learnfast.dao.implemenation.UserDAOImplementation;
+import com.educator.learnfast.dao.implementation.EnrollmentDAOImplementation;
+import com.educator.learnfast.dao.implementation.UserDAOImplementation;
 
 public class EnrollmentService {
+
 	private EnrollmentDAO enrollmentDAO = new EnrollmentDAOImplementation();
 	private UserDAO userDAO = new UserDAOImplementation();
 
@@ -14,11 +15,11 @@ public class EnrollmentService {
 		return val;
 	}
 
-	public boolean deleteEnrollment(int CourseId, int UserId) {
+	public boolean deleteEnrollment(int courseId, int userId) {
 		boolean result = false;
-		boolean val = enrollmentDAO.deleteEnrollment(CourseId, UserId);
+		boolean val = enrollmentDAO.deleteEnrollment(courseId, userId);
 		if (val == true)
-			result = userDAO.updateNoOfCoursesEnrolled(UserId);
+			result = userDAO.updateNoOfCoursesEnrolled(userId);
 		return result;
 	}
 

@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 import com.educator.learnfast.dao.CoursesDAO;
 import com.educator.learnfast.dao.EnrollmentDAO;
-import com.educator.learnfast.dao.implemenation.CoursesDAOImplementation;
-import com.educator.learnfast.dao.implemenation.EnrollmentDAOImplementation;
+import com.educator.learnfast.dao.implementation.CoursesDAOImplementation;
+import com.educator.learnfast.dao.implementation.EnrollmentDAOImplementation;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 
 public class CoursesService {
-	
+
 	private CoursesDAO coursesDAO = new CoursesDAOImplementation();
 	private EnrollmentDAO enrollmentDAO = new EnrollmentDAOImplementation();
-	
 
 	public boolean saveCourse(CourseInfo course) {
 		boolean val = coursesDAO.saveCourse(course);
@@ -21,13 +20,17 @@ public class CoursesService {
 	}
 
 	public int getNoOfEnrollment(int courseId) {
-		int val = coursesDAO.getNoOfEnrollment(courseId);
+		int val = coursesDAO.countNoOfEnrollment(courseId);
 		return val;
 	}
 
 	public boolean deleteCourse(int courseId) {
-		boolean val = coursesDAO.deleteCourse(courseId);
-		return val;
+		boolean result = false;
+		int count = coursesDAO.countNoOfEnrollment(courseId);
+		if (count == 0) {
+			result = coursesDAO.deleteCourse(courseId);
+		}
+		return result;
 	}
 
 	public ArrayList<ContentInfo> getCourseContent(int courseId) {

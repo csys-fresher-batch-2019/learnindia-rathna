@@ -10,14 +10,15 @@ import com.educator.learnfast.models.CourseInfo;
 public class CourseInfoRowMapper implements RowMapper<CourseInfo> {
 
 	public CourseInfo mapRow(ResultSet rs, int row) throws SQLException {
-		CourseInfo ci = new CourseInfo();
-		ci.setCourseId(rs.getInt("course_id"));
-		ci.setCourseName(rs.getString("course_name"));
-		ci.setDurationOfCourse(rs.getInt("duration_of_course"));
-		ci.setInstructorName(rs.getString("instructor_name"));
-		ci.setCourseCategory(rs.getString("course_category"));
-		ci.setPrice(rs.getInt("price"));
-		return ci;
+		CourseInfo courseInfo = new CourseInfo();
+		courseInfo.setCourseId(rs.getInt("course_id"));
+		courseInfo.setCourseName(rs.getString("course_name"));
+		courseInfo.setDurationOfCourse(rs.getInt("duration_of_course"));
+		courseInfo.setInstructorName(rs.getString("instructor_name"));
+		courseInfo.setCourseCategory(rs.getString("course_category"));
+		courseInfo.setPrice(rs.getInt("price"));
+		courseInfo.setRating(rs.getInt("rating"));
+		return courseInfo;
 	}
 
 }

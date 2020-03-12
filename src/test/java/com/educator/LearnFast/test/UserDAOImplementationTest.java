@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.educator.learnfast.dao.implemenation.UserDAOImplementation;
+import com.educator.learnfast.dao.implementation.UserDAOImplementation;
 import com.educator.learnfast.models.CourseHistory;
+import com.educator.learnfast.models.EnrollmentStatusEnum;
 import com.educator.learnfast.models.UserInfo;
 import com.educator.learnfast.service.UserService;
 
@@ -17,7 +18,8 @@ public class UserDAOImplementationTest {
 
 	UserService check = new UserService();
 
-	@Test @Ignore
+	@Test
+	@Ignore
 	public void testAddUser() throws Exception {
 		UserInfo arg = new UserInfo();
 		arg.setUserName("Seenivasan");
@@ -31,16 +33,16 @@ public class UserDAOImplementationTest {
 	@Test
 	@Ignore
 	public void testDeleteUser() throws Exception {
-		int userId = 80;
+		int userId = 89;
 		boolean expected = true;
 		boolean actual = check.deleteUser(userId);
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testUserLogin() throws Exception {
 		String email = "gokul@gmail.com";
-		String pass = "gokul12345";
+		String pass = "gokul1";
 		UserInfo expected = new UserInfo();
 		UserInfo actual = new UserInfo();
 		expected.setUserId(53);
@@ -48,17 +50,15 @@ public class UserDAOImplementationTest {
 		expected.setEmailId("gokul@gmail.com");
 		expected.setUserPassword("gokul12345");
 		expected.setNoOfCoursesEnrolled(9);
-		// UserDAOImplementation check = new UserDAOImplementation();
 		actual = check.userLogin(email, pass);
 		assertEquals(expected, actual);
 	}
 
 	@Test
-	@Ignore
 	public void testGetCourseHistory() {
 		int userId = 60;
-		int status = 2;
-		UserDAOImplementation check = new UserDAOImplementation();
+		String status = "ONGOING";
+		//UserDAOImplementation check = new UserDAOImplementation();
 		ArrayList<CourseHistory> expected = new ArrayList<CourseHistory>();
 		CourseHistory in1 = new CourseHistory();
 		in1.setCourseName("Introduction to Digital Photography");
@@ -74,15 +74,6 @@ public class UserDAOImplementationTest {
 		actual = check.getCourseHistory(userId, status);
 		assertEquals(expected, actual);
 
-	}
-
-	@Test
-	@Ignore
-	public void getEmail() throws Exception {
-		String email = "abc@gmail.com";
-		boolean expected = true;
-		boolean actual = check.findByUserEmail(email);
-		assertEquals(expected, actual);
 	}
 
 }

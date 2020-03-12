@@ -5,7 +5,7 @@ public class UserInfo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
+		result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
 		result = prime * result + noOfCoursesEnrolled;
 		result = prime * result + userId;
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
@@ -22,10 +22,10 @@ public class UserInfo {
 		if (getClass() != obj.getClass())
 			return false;
 		UserInfo other = (UserInfo) obj;
-		if (emailId == null) {
-			if (other.emailId != null)
+		if (userEmail == null) {
+			if (other.userEmail != null)
 				return false;
-		} else if (!emailId.equals(other.emailId))
+		} else if (!userEmail.equals(other.userEmail))
 			return false;
 		if (noOfCoursesEnrolled != other.noOfCoursesEnrolled)
 			return false;
@@ -46,7 +46,7 @@ public class UserInfo {
 
 	int userId;
 	private String userName;
-	private String emailId;
+	private String userEmail;
 	private String userPassword;
 	private int noOfCoursesEnrolled;
 
@@ -60,7 +60,7 @@ public class UserInfo {
 
 	@Override
 	public String toString() {
-		return "UserInfo [userId=" + userId + ", userName=" + userName + ", emailId=" + emailId + ", userPassword="
+		return "UserInfo [userId=" + userId + ", userName=" + userName + ", emailId=" + userEmail + ", userPassword="
 				+ userPassword + ", noOfCoursesEnrolled=" + noOfCoursesEnrolled + "]";
 	}
 
@@ -73,11 +73,11 @@ public class UserInfo {
 	}
 
 	public String getEmailId() {
-		return emailId;
+		return userEmail;
 	}
 
 	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+		this.userEmail = emailId;
 	}
 
 	public String getUserPassword() {

@@ -1,10 +1,10 @@
 package com.educator.learnfast.service;
 
-import com.educator.learnfast.dao.InstructorDAO;
-import com.educator.learnfast.dao.implemenation.InstructorDAOImplementation;
 import com.educator.learnfast.exception.InfoMessages;
-import com.educator.learnfast.exception.ServiceException;
 import com.educator.learnfast.exception.ValidationException;
+import com.educator.learnfast.exception.ServiceException;
+import com.educator.learnfast.dao.InstructorDAO;
+import com.educator.learnfast.dao.implementation.InstructorDAOImplementation;
 import com.educator.learnfast.models.InstructorInfo;
 import com.educator.learnfast.validation.InstructorValidation;
 
@@ -18,11 +18,11 @@ public class InstructorService {
 		return val;
 	}
 
-	public InstructorInfo instructorLogin(String email, String pass) throws ServiceException, ValidationException {
+	public InstructorInfo instructorLogin(String email, String pass) throws ValidationException, ServiceException {
 		InstructorValidation.validateLogin(email, pass);
 		InstructorInfo instructorInfo = new InstructorInfo();
 		instructorInfo = instructorDAO.instructorLogin(email, pass);
-		if(instructorInfo == null)
+		if (instructorInfo == null)
 			throw new ServiceException(InfoMessages.INVALIDLOGIN);
 		else
 			return instructorInfo;

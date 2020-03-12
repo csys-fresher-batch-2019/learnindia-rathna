@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.educator.learnfast.dao.implemenation.CoursesDAOImplementation;
+import com.educator.learnfast.dao.implementation.CoursesDAOImplementation;
 import com.educator.learnfast.models.ContentInfo;
 import com.educator.learnfast.models.CourseInfo;
 import com.educator.learnfast.service.CoursesService;
@@ -16,7 +16,6 @@ public class CoursesDAOImplementationTest {
 
 	CoursesService met = new CoursesService();
 
-	@Ignore
 	@Test
 	public void testSaveCourse() throws Exception {
 		CourseInfo obj = new CourseInfo();
@@ -32,20 +31,19 @@ public class CoursesDAOImplementationTest {
 	}
 
 	@Test
-	@Ignore
 	public void testRemoveCourse() throws Exception {
-		int courseId = 20211;
+		int courseId = 20208;
 		boolean expected = true;
 		boolean actual = met.deleteCourse(courseId);
 		assertEquals(expected, actual);
 	}
 
-	@Test @Ignore
+	@Test
 	public void testgetNoOfEnrollment() throws Exception {
-		int courseId = 20;
-		int expected = 5;
+		int courseId = 20202;
+		int expected = 3;
 		CoursesDAOImplementation course = new CoursesDAOImplementation();
-		int actual = course.getNoOfEnrollment(courseId);
+		int actual = course.countNoOfEnrollment(courseId);
 		assertEquals(expected, actual);
 	}
 
@@ -53,36 +51,37 @@ public class CoursesDAOImplementationTest {
 	public void testDisplayCourses() throws Exception {
 		CourseInfo argu = new CourseInfo();
 		CoursesDAOImplementation check = new CoursesDAOImplementation();
-		String category = "Arts";
+		String category = "Engineering";
 		argu.setCourseCategory(category);
 		ArrayList<CourseInfo> expected = new ArrayList<>();
 		CourseInfo alist = new CourseInfo();
 		alist.setCourseId(20203);
-		alist.setCourseName("MusicTheory");
-		alist.setDurationOfCourse(16);
-		alist.setInstructorName("Robin");
-		alist.setCourseCategory("Arts");
-		alist.setPrice(2000);
+		alist.setCourseName("Power Systems");
+		alist.setDurationOfCourse(8);
+		alist.setInstructorName("J.B.Gupta");
+		alist.setCourseCategory("Engineering");
+		alist.setPrice(1000);
+		alist.setRating(2);
 		expected.add(alist);
 		ArrayList<CourseInfo> actual = new ArrayList<>();
 		actual = check.findCourses(argu);
 		assertEquals(expected, actual);
 	}
 
-	@Test @Ignore
+	@Test
 	public void testCourseRating() throws Exception {
 		int courseId = 20202;
-		int userId = 64;
-		int rating = 3;
+		int userId = 53;
+		int rating = 5;
 		boolean expected = true;
 		boolean actual = met.saveCourseRating(rating, courseId, userId);
 		assertEquals(expected, actual);
 	}
 
-	@Test @Ignore
+	@Test
 	public void testFetchCourseContent() throws Exception {
 		ArrayList<ContentInfo> expected = new ArrayList<>();
-		int courseId = 20;
+		int courseId = 20204;
 		ContentInfo c1 = new ContentInfo();
 		c1.setChapterNo(1);
 		c1.setCourseContent("Setting the Scene for Conversation");
@@ -105,22 +104,20 @@ public class CoursesDAOImplementationTest {
 	}
 
 	@Test
-	@Ignore
 	public void saveContent() {
 		ContentInfo contentInfo = new ContentInfo();
-		contentInfo.setChapterNo(5);
-		contentInfo.setCourseId(20205);
-		contentInfo.setCourseContent("Improve Your Communication Skills");
+		contentInfo.setChapterNo(8);
+		contentInfo.setCourseId(20207);
+		contentInfo.setCourseContent("Advanced differentiation");
 		boolean expected = true;
 		boolean actual = met.saveCourseContent(contentInfo);
 		assertEquals(expected, actual);
 	}
 
 	@Test
-	@Ignore
 	public void deleteContent() {
-		int courseId = 20205;
-		int chapterNo = 5;
+		int courseId = 20206;
+		int chapterNo = 8;
 		boolean expected = true;
 		boolean actual = met.deleteCourseContent(courseId, chapterNo);
 		assertEquals(expected, actual);

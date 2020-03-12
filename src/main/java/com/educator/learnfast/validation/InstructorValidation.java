@@ -1,7 +1,7 @@
 package com.educator.learnfast.validation;
 
 import com.educator.learnfast.dao.InstructorDAO;
-import com.educator.learnfast.dao.implemenation.InstructorDAOImplementation;
+import com.educator.learnfast.dao.implementation.InstructorDAOImplementation;
 import com.educator.learnfast.exception.ValidationException;
 import com.educator.learnfast.models.InstructorInfo;
 
@@ -24,7 +24,7 @@ public class InstructorValidation {
 		if (instructorInfo.getInstructorPassword().length() < 8)
 			throw new ValidationException("Password must contain atleast 8 characters");
 		InstructorDAO instructorDAO = new InstructorDAOImplementation();
-		boolean exist = instructorDAO.getInstructorEmail(instructorInfo.getInstructorEmail());
+		boolean exist = instructorDAO.findByInstructorEmail(instructorInfo.getInstructorEmail());
 		if (exist == false)
 			throw new ValidationException("EmailId Already Exists");
 	}

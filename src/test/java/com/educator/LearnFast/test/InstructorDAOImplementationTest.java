@@ -6,7 +6,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import com.educator.learnfast.dao.InstructorDAO;
-import com.educator.learnfast.dao.implemenation.InstructorDAOImplementation;
+import com.educator.learnfast.dao.implementation.InstructorDAOImplementation;
 import com.educator.learnfast.models.InstructorInfo;
 import com.educator.learnfast.service.InstructorService;
 
@@ -14,20 +14,19 @@ public class InstructorDAOImplementationTest {
 
 	InstructorService check = new InstructorService();
 
-	@Test
-	@Ignore
+	@Test @Ignore
 	public void testAddInstructor() throws Exception {
 		boolean expected = true;
 		InstructorInfo arg = new InstructorInfo();
-		arg.setInstructorName("vimal");
-		arg.setInstructorEmail("vimal@gmail.com");
-		arg.setInstructorPassword("vimal12345");
-		arg.setAreaOfInterest("Power Electronics");
+		arg.setInstructorName("ganesh");
+		arg.setInstructorEmail("ganesh@gmail.com");
+		arg.setInstructorPassword("ganesh12345");
+		arg.setAreaOfInterest("Electrical Machines");
 		boolean actual = check.saveInstructor(arg);
 		assertEquals(expected, actual);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testInstructorLogin() throws Exception {
 		InstructorInfo expected = new InstructorInfo();
 		String email = "gokul@gmail.com";
@@ -48,7 +47,7 @@ public class InstructorDAOImplementationTest {
 		String email = "robert@gmail.com";
 		boolean expected = true;
 		InstructorDAO instructorDAO = new InstructorDAOImplementation();
-		boolean actual = instructorDAO.getInstructorEmail(email);
+		boolean actual = instructorDAO.findByInstructorEmail(email);
 		assertEquals(expected, actual);
 	}
 
