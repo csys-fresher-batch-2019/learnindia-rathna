@@ -1,9 +1,8 @@
 package com.educator.learnfast.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.educator.learnfast.model.CourseHistory;
-import com.educator.learnfast.model.EnrollmentStatusEnum;
 import com.educator.learnfast.model.UserInfo;
 
 public interface UserDAO {
@@ -11,7 +10,7 @@ public interface UserDAO {
 
 	boolean deleteUser(int userId);
 
-	ArrayList<CourseHistory> getCourseHistory(int userId, String status);
+	List<CourseHistory> getCourseHistory(int userId, String status);
 
 	UserInfo userLogin(String email, String pass);
 

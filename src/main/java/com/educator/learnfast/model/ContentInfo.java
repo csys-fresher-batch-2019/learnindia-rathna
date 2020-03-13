@@ -1,6 +1,11 @@
 package com.educator.learnfast.model;
 
 public class ContentInfo {
+
+	private int courseId;
+	private String courseContent;
+	private int chapterNo;
+
 	@Override
 	public String toString() {
 		return "ContentInfo [courseId=" + courseId + ", courseContent=" + courseContent + ", chapterNo=" + chapterNo
@@ -37,10 +42,6 @@ public class ContentInfo {
 			return false;
 		return true;
 	}
-
-	private int courseId;
-	private String courseContent;
-	private int chapterNo;
 
 	public int getCourseId() {
 		return courseId;

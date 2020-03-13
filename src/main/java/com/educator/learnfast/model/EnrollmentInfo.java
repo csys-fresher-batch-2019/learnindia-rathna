@@ -5,11 +5,6 @@ import java.time.LocalDate;
 import com.educator.learnfast.model.EnrollmentStatusEnum;
 
 public class EnrollmentInfo {
-	@Override
-	public String toString() {
-		return "EnrollmentInfo [enrollmentId=" + enrollmentId + ", courseId=" + courseId + ", userId=" + userId
-				+ ", enrolledDate=" + enrolledDate + ", endingDate=" + endingDate + ", status=" + status + "]";
-	}
 
 	private int enrollmentId;
 	private int courseId;
@@ -17,6 +12,12 @@ public class EnrollmentInfo {
 	private LocalDate enrolledDate;
 	private LocalDate endingDate;
 	private EnrollmentStatusEnum status;
+
+	@Override
+	public String toString() {
+		return "EnrollmentInfo [enrollmentId=" + enrollmentId + ", courseId=" + courseId + ", userId=" + userId
+				+ ", enrolledDate=" + enrolledDate + ", endingDate=" + endingDate + ", status=" + status + "]";
+	}
 
 	public int getEnrollmentId() {
 		return enrollmentId;

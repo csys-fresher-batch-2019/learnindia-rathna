@@ -1,6 +1,7 @@
 package com.educator.learnfast.dao.implementation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,7 +11,6 @@ import com.educator.learnfast.dao.UserDAO;
 import com.educator.learnfast.mapper.CourseHistoryRowMapper;
 import com.educator.learnfast.mapper.UserInfoRowMapper;
 import com.educator.learnfast.model.CourseHistory;
-import com.educator.learnfast.model.EnrollmentStatusEnum;
 import com.educator.learnfast.model.UserInfo;
 import com.educator.learnfast.util.ConnectionUtil;
 import com.educator.learnfast.util.Logger;
@@ -46,10 +46,10 @@ public class UserDAOImplementation implements UserDAO {
 		return count;
 	}
 
-	public ArrayList<CourseHistory> getCourseHistory(int userId, String status) {
+	public List<CourseHistory> getCourseHistory(int userId, String status) {
 		String sql = "select c.course_name,c.course_id,c.instructor_name,e.enrolled_date,e.ending_date,e.enrollment_id "
 				+ "from course_info c,enrollment_info e where c.course_id = e.course_id and e.user_id = ? and e.status = ?";
-		ArrayList<CourseHistory> chrs = new ArrayList<CourseHistory>();
+		List<CourseHistory> chrs = new ArrayList<CourseHistory>();
 		CourseHistoryRowMapper rowMapper = new CourseHistoryRowMapper();
 		chrs = (ArrayList<CourseHistory>) jdbcTemplate.query(sql, rowMapper, userId, status);
 		logger.info(chrs);

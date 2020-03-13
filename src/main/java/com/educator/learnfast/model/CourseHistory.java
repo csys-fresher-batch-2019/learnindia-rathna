@@ -3,6 +3,15 @@ package com.educator.learnfast.model;
 import java.time.LocalDate;
 
 public class CourseHistory {
+
+	private String courseName;
+	private int courseId;
+	private String instructorName;
+	private LocalDate enrolledDate;
+	private LocalDate endingDate;
+	private boolean status;
+	private int enrollmentId;
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -61,14 +70,6 @@ public class CourseHistory {
 				+ instructorName + ", enrolledDate=" + enrolledDate + ", endingDate=" + endingDate + ", status="
 				+ status + ", enrollmentId=" + enrollmentId + "]";
 	}
-
-	private String courseName;
-	private int courseId;
-	private String instructorName;
-	private LocalDate enrolledDate;
-	private LocalDate endingDate;
-	private boolean status;
-	private int enrollmentId;
 
 	public LocalDate getEnrolledDate() {
 		return enrolledDate;

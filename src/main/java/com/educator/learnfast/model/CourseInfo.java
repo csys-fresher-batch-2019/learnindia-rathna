@@ -1,12 +1,6 @@
 package com.educator.learnfast.model;
 
 public class CourseInfo {
-	@Override
-	public String toString() {
-		return "CourseInfo [courseId=" + courseId + ", courseName=" + courseName + ", durationOfCourse="
-				+ durationOfCourse + ", instructorName=" + instructorName + ", courseCategory=" + courseCategory
-				+ ", price=" + price + ", rating=" + rating + ", instructorId=" + instructorId + "]";
-	}
 
 	private int courseId;
 	private String courseName;
@@ -16,6 +10,13 @@ public class CourseInfo {
 	private int price;
 	private int rating;
 	private int instructorId;
+
+	@Override
+	public String toString() {
+		return "CourseInfo [courseId=" + courseId + ", courseName=" + courseName + ", durationOfCourse="
+				+ durationOfCourse + ", instructorName=" + instructorName + ", courseCategory=" + courseCategory
+				+ ", price=" + price + ", rating=" + rating + ", instructorId=" + instructorId + "]";
+	}
 
 	@Override
 	public int hashCode() {

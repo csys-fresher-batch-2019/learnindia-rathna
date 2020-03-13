@@ -10,11 +10,24 @@ public class EnrollmentService {
 	private EnrollmentDAO enrollmentDAO = new EnrollmentDAOImplementation();
 	private UserDAO userDAO = new UserDAOImplementation();
 
+	
+	/**
+	 * Save enrollment in database
+	 * @param userId
+	 * @param courseId
+	 * @return
+	 */
 	public boolean saveEnrollment(int userId, int courseId) {
 		boolean val = enrollmentDAO.saveEnrollment(userId, courseId);
 		return val;
 	}
 
+	/**
+	 * delete enrollment in database
+	 * @param courseId
+	 * @param userId
+	 * @return
+	 */
 	public boolean deleteEnrollment(int courseId, int userId) {
 		boolean result = false;
 		boolean val = enrollmentDAO.deleteEnrollment(courseId, userId);

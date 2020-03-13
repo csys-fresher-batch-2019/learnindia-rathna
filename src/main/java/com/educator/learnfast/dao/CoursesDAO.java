@@ -1,6 +1,6 @@
 package com.educator.learnfast.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.educator.learnfast.model.ContentInfo;
 import com.educator.learnfast.model.CourseInfo;
@@ -13,11 +13,11 @@ public interface CoursesDAO {
 
 	boolean deleteCourse(int courseId);
 
-	ArrayList<CourseInfo> findCourses(CourseInfo course);
+	List<CourseInfo> findCourses(CourseInfo course);
 
 	boolean saveCourseRating(int rating, int courseId, int userId);
 
-	ArrayList<ContentInfo> getCourseContent(int courseId);
+	List<ContentInfo> getCourseContent(int courseId);
 
 	boolean saveCourseContent(ContentInfo ci);
 

@@ -3,6 +3,7 @@ package com.educator.LearnFast.test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -50,10 +51,10 @@ public class CoursesDAOImplementationTest {
 	@Test @Ignore
 	public void testDisplayCourses() throws Exception {
 		CourseInfo argu = new CourseInfo();
-		CoursesDAOImplementation check = new CoursesDAOImplementation();
+		//CoursesDAOImplementation check = new CoursesDAOImplementation();
 		String category = "Engineering";
 		argu.setCourseCategory(category);
-		ArrayList<CourseInfo> expected = new ArrayList<>();
+		List<CourseInfo> expected = new ArrayList<>();
 		CourseInfo alist = new CourseInfo();
 		alist.setCourseId(20203);
 		alist.setCourseName("Power Systems");
@@ -63,8 +64,8 @@ public class CoursesDAOImplementationTest {
 		alist.setPrice(1000);
 		alist.setRating(2);
 		expected.add(alist);
-		ArrayList<CourseInfo> actual = new ArrayList<>();
-		actual = check.findCourses(argu);
+		List<CourseInfo> actual = new ArrayList<>();
+		actual = met.findCourses(argu);
 		assertEquals(expected, actual);
 	}
 
@@ -98,7 +99,7 @@ public class CoursesDAOImplementationTest {
 		expected.add(c2);
 		expected.add(c3);
 		expected.add(c4);
-		ArrayList<ContentInfo> actual = new ArrayList<>();
+		List<ContentInfo> actual = new ArrayList<>();
 		actual = met.getCourseContent(courseId);
 		assertEquals(expected, actual);
 	}

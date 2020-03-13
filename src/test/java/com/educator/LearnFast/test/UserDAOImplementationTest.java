@@ -4,13 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.educator.learnfast.dao.implementation.UserDAOImplementation;
 import com.educator.learnfast.model.CourseHistory;
-import com.educator.learnfast.model.EnrollmentStatusEnum;
 import com.educator.learnfast.model.UserInfo;
 import com.educator.learnfast.service.UserService;
 
@@ -39,7 +38,8 @@ public class UserDAOImplementationTest {
 		assertEquals(expected, actual);
 	}
 
-	@Test @Ignore
+	@Test
+	@Ignore
 	public void testUserLogin() throws Exception {
 		String email = "gokul@gmail.com";
 		String pass = "gokul1";
@@ -58,7 +58,7 @@ public class UserDAOImplementationTest {
 	public void testGetCourseHistory() {
 		int userId = 60;
 		String status = "ONGOING";
-		//UserDAOImplementation check = new UserDAOImplementation();
+		// UserDAOImplementation check = new UserDAOImplementation();
 		ArrayList<CourseHistory> expected = new ArrayList<CourseHistory>();
 		CourseHistory in1 = new CourseHistory();
 		in1.setCourseName("Introduction to Digital Photography");
@@ -70,7 +70,7 @@ public class UserDAOImplementationTest {
 		in1.setEndingDate(enddate.toLocalDate());
 		in1.setEnrollmentId(221);
 		expected.add(in1);
-		ArrayList<CourseHistory> actual = new ArrayList<CourseHistory>();
+		List<CourseHistory> actual = new ArrayList<CourseHistory>();
 		actual = check.getCourseHistory(userId, status);
 		assertEquals(expected, actual);
 

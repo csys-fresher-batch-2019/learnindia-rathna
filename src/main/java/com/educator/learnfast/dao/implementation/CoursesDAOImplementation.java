@@ -1,6 +1,7 @@
 package com.educator.learnfast.dao.implementation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -45,7 +46,7 @@ public class CoursesDAOImplementation implements CoursesDAO {
 		return count;
 	}
 
-	public ArrayList<CourseInfo> findCourses(CourseInfo course) {
+	public List<CourseInfo> findCourses(CourseInfo course) {
 		StringBuilder sb1 = new StringBuilder("select *from course_info ");
 		if (course.getCourseName().length() != 0) {
 			sb1.append("where course_name like '%" + course.getCourseName() + "%'");
@@ -61,9 +62,9 @@ public class CoursesDAOImplementation implements CoursesDAO {
 			sb1.append("where course_category = '" + course.getCourseCategory() + "' and instructor_name like '%"
 					+ course.getInstructorName() + "%'");
 		String sql = sb1.toString();
-		ArrayList<CourseInfo> out = new ArrayList<CourseInfo>();
+		List<CourseInfo> out = new ArrayList<>();
 		CourseInfoRowMapper rowMapper = new CourseInfoRowMapper();
-		out = (ArrayList<CourseInfo>) jdbcTemplate.query(sql, rowMapper);
+		out = (List<CourseInfo>) jdbcTemplate.query(sql, rowMapper);
 		return out;
 	}
 
@@ -76,11 +77,11 @@ public class CoursesDAOImplementation implements CoursesDAO {
 			return false;
 	}
 
-	public ArrayList<ContentInfo> getCourseContent(int courseId) {
+	public List<ContentInfo> getCourseContent(int courseId) {
 		String sql = "select course_content,chapter_no from content_info where course_id = ?";
-		ArrayList<ContentInfo> list = new ArrayList<ContentInfo>();
+		List<ContentInfo> list = new ArrayList<>();
 		ContentInfoRowMapper rowMapper = new ContentInfoRowMapper();
-		list = (ArrayList<ContentInfo>) jdbcTemplate.query(sql, rowMapper, courseId);
+		list = (List<ContentInfo>) jdbcTemplate.query(sql, rowMapper, courseId);
 		return list;
 	}
 
