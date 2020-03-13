@@ -9,7 +9,6 @@ public class CourseHistory {
 	private String instructorName;
 	private LocalDate enrolledDate;
 	private LocalDate endingDate;
-	private boolean status;
 	private int enrollmentId;
 
 	@Override
@@ -22,7 +21,6 @@ public class CourseHistory {
 		result = prime * result + ((enrolledDate == null) ? 0 : enrolledDate.hashCode());
 		result = prime * result + enrollmentId;
 		result = prime * result + ((instructorName == null) ? 0 : instructorName.hashCode());
-		result = prime * result + (status ? 1231 : 1237);
 		return result;
 	}
 
@@ -59,16 +57,14 @@ public class CourseHistory {
 				return false;
 		} else if (!instructorName.equals(other.instructorName))
 			return false;
-		if (status != other.status)
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "CourseHistory [courseName=" + courseName + ", courseId=" + courseId + ", instructorName="
-				+ instructorName + ", enrolledDate=" + enrolledDate + ", endingDate=" + endingDate + ", status="
-				+ status + ", enrollmentId=" + enrollmentId + "]";
+				+ instructorName + ", enrolledDate=" + enrolledDate + ", endingDate=" + endingDate + ", enrollmentId="
+				+ enrollmentId + "]";
 	}
 
 	public LocalDate getEnrolledDate() {
@@ -117,14 +113,6 @@ public class CourseHistory {
 
 	public void setInstructorName(String instructorName) {
 		this.instructorName = instructorName;
-	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
 	}
 
 }

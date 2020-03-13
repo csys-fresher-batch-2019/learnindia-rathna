@@ -49,7 +49,7 @@ public class UserDAOImplementation implements UserDAO {
 	public List<CourseHistory> getCourseHistory(int userId, String status) {
 		String sql = "select c.course_name,c.course_id,c.instructor_name,e.enrolled_date,e.ending_date,e.enrollment_id "
 				+ "from course_info c,enrollment_info e where c.course_id = e.course_id and e.user_id = ? and e.status = ?";
-		List<CourseHistory> chrs = new ArrayList<CourseHistory>();
+		List<CourseHistory> chrs = new ArrayList<>();
 		CourseHistoryRowMapper rowMapper = new CourseHistoryRowMapper();
 		chrs = (ArrayList<CourseHistory>) jdbcTemplate.query(sql, rowMapper, userId, status);
 		logger.info(chrs);
