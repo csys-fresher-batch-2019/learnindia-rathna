@@ -1,4 +1,4 @@
-package com.educator.LearnFast.test;
+package com.educator.learnfast.test;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;

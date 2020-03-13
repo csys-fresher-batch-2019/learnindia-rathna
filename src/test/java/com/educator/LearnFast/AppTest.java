@@ -1,4 +1,4 @@
-package com.educator.LearnFast;
+package com.educator.learnfast;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

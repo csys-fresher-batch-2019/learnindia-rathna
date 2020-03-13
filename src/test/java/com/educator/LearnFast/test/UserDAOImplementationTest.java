@@ -1,4 +1,4 @@
-package com.educator.LearnFast.test;
+package com.educator.learnfast.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,8 +17,7 @@ public class UserDAOImplementationTest {
 
 	UserService check = new UserService();
 
-	@Test
-	@Ignore
+	@Test @Ignore
 	public void testAddUser() throws Exception {
 		UserInfo arg = new UserInfo();
 		arg.setUserName("Seenivasan");

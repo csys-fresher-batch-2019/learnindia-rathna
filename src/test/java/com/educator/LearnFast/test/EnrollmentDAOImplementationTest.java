@@ -1,4 +1,4 @@
-package com.educator.LearnFast.test;
+package com.educator.learnfast.test;
 
 import static org.junit.Assert.assertEquals;
 
