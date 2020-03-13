@@ -106,7 +106,7 @@ public class CoursesService {
 	 * @return
 	 */
 	public List<CourseInfo> findCourses (CourseInfo courseInfo){
-		List<CourseInfo> list = new ArrayList<CourseInfo>();
+		List<CourseInfo> list = new ArrayList<>();
 		list = coursesDAO.findCourses(courseInfo);
 		return list;
 	}

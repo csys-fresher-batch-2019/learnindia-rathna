@@ -59,7 +59,7 @@ public class UserService {
 	 * @return
 	 */
 	public List<CourseHistory> getCourseHistory(int userId, String status) {
-		List<CourseHistory> out = new ArrayList<CourseHistory>();
+		List<CourseHistory> out = new ArrayList<>();
 		out = userDAO.getCourseHistory(userId, status);
 		return out;
 	}

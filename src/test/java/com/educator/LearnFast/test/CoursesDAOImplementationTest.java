@@ -51,9 +51,11 @@ public class CoursesDAOImplementationTest {
 	@Test @Ignore
 	public void testDisplayCourses() throws Exception {
 		CourseInfo argu = new CourseInfo();
-		//CoursesDAOImplementation check = new CoursesDAOImplementation();
 		String category = "Engineering";
 		argu.setCourseCategory(category);
+		argu.setCourseName("");
+		argu.setPrice(100);
+		argu.setInstructorName("");
 		List<CourseInfo> expected = new ArrayList<>();
 		CourseInfo alist = new CourseInfo();
 		alist.setCourseId(20203);

@@ -58,7 +58,6 @@ public class UserDAOImplementationTest {
 	public void testGetCourseHistory() {
 		int userId = 60;
 		String status = "ONGOING";
-		// UserDAOImplementation check = new UserDAOImplementation();
 		ArrayList<CourseHistory> expected = new ArrayList<CourseHistory>();
 		CourseHistory in1 = new CourseHistory();
 		in1.setCourseName("Introduction to Digital Photography");
